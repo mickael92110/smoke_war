@@ -3,14 +3,17 @@
 
 #include <iostream>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 class Ninja{
 
 public:
 
   //Constructeur
-  Ninja(int vie, int chakra, std::string nom) : _vie(vie), _chakra(chakra), _nom(nom), _id(++_cpt){}
-  Ninja(int vie, int chakra) : _vie(vie), _chakra(chakra), _nom("defaut"), _id(++_cpt) {}
+  Ninja(int vie, int chakra, std::string nom);
+  Ninja(int vie, int chakra) ;
   Ninja(){}
 
   // Fonctions
@@ -31,6 +34,7 @@ public:
   void toString();
 
 
+
 protected:
 
   //attributs
@@ -39,7 +43,7 @@ protected:
   std::string _nom;
   int _id;
   static int _cpt;
-
+  int compteur;
 
 
 };

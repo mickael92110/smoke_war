@@ -7,14 +7,14 @@
 class Soigneur : public Ninja{
 
 private:
-  static int _pointSoin;
+  int _pointSoin;
 
 public:
 
   //Constructeur
-  Soigneur(int vie, int chakra, std::string nom) : Ninja(vie,chakra,nom){}
-  Soigneur(int vie, int chakra) : Ninja(vie,chakra){}
-  Soigneur() : Ninja(100,150,"Sakura") {}
+  Soigneur(int vie, int chakra, std::string nom, int pointSoin) ;
+  Soigneur(int vie, int chakra) ;
+  Soigneur();
 
   // Fonctions
   void technique(Ninja &v);

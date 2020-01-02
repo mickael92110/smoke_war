@@ -2,24 +2,23 @@
 #define DEFENSEUR_H
 
 #include <iostream>
-#include "ninja.hh"
-
-class Defenseur : public Ninja{
+#include "attaquant.hh"
+//Un defenseur est un attaquant qui lorsqu'il attaque normalement il regarne de la vie
+class Defenseur : public Attaquant{
 
 private:
-  static int _pointDefense;
+  int _pointDefense;
 
 public:
 
   //Constructeur
-  Defenseur(int vie, int chakra, std::string nom) : Ninja(vie,chakra,nom){}
-  Defenseur(int vie, int chakra) : Ninja(vie,chakra){}
-  Defenseur() : Ninja(150,100,"Naruto"){}
+  Defenseur(int vie, int chakra, std::string nom, int pointAttaque,int _pointDefense);
+  Defenseur(int vie, int chakra) ;
+  Defenseur() ;
 
   // Fonctions
   void technique(Ninja &v);
-  void techniqueSpecial(Ninja &v);
-  void rechargeChakra();
+
 
 };
 

@@ -1,23 +1,38 @@
 #include "attaquant.hh"
 
-int Attaquant::_pointAttaque = 20;
+Attaquant::Attaquant(int vie, int chakra, std::string nom, int pointAttaque) : Ninja(vie,chakra,nom){
+  _pointAttaque = pointAttaque;
+}
+
+Attaquant::Attaquant(int vie, int chakra) : Ninja(vie,chakra){
+  srand (time(NULL));
+    _pointAttaque = rand() % 20 + 10;
+  }
+
+Attaquant::Attaquant() : Ninja(150,100,"Sasuke"){
+  srand (time(NULL));
+  _pointAttaque = rand() % 20 + 10;
+}
 
 void Attaquant::technique(Ninja &v){
-  std::cout<< this->_nom <<" attaque de " << Attaquant::_pointAttaque << " "<< v.getNom()<<std::endl;
+
+  std::cout<< this->_nom <<" attaque de " << Attaquant::_pointAttaque << " pv "<< v.getNom()<<std::endl;
   int vie_v;
   vie_v = v.getVie();
   vie_v -= _pointAttaque;
-  v.setVie(vie_v);
+  if (vie_v < 0) v.setVie(0);
+  else v.setVie(vie_v);
   this->_chakra -= 20;
 }
 
 void Attaquant::techniqueSpecial(Ninja &v){
-  std::cout<< this->_nom <<" attaque special de " << Attaquant::_pointAttaque*2 << " "<< v.getNom()<<std::endl;
+  std::cout<< this->_nom <<" attaque special de " << Attaquant::_pointAttaque*2 <<" pv "<< v.getNom()<<std::endl;
 
   int vie_v;
   vie_v = v.getVie();
   vie_v -= _pointAttaque*2;
-  v.setVie(vie_v);
+  if (vie_v < 0) v.setVie(0);
+  else v.setVie(vie_v);
   this->_chakra -= 40;
 }
 
