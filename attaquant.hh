@@ -6,21 +6,18 @@
 
 class Attaquant : public Ninja{
 
-protected:
-  int _pointAttaque;
 
 public:
 
-  //Constructeu
+  //Constructeur
   Attaquant(int vie, int chakra, std::string nom, int pointAttaque) ;
   Attaquant(int vie, int chakra) ;
   Attaquant() ;
 
   // Fonctions
-  void technique(Ninja &v);
-  void techniqueSpecial(Ninja &v);
+  void technique(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);
+  void techniqueSpecial(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);
   void rechargeChakra();
-
 };
 
 

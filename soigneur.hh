@@ -6,8 +6,7 @@
 
 class Soigneur : public Ninja{
 
-private:
-  int _pointSoin;
+
 
 public:
 
@@ -17,10 +16,9 @@ public:
   Soigneur();
 
   // Fonctions
-  void technique(Ninja &v);
-  void techniqueSpecial(Ninja &v);
+  void technique(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);
+  void techniqueSpecial(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);
   void rechargeChakra();
-
 };
 
 
