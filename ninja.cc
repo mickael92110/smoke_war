@@ -48,6 +48,7 @@ void Ninja::reducVie(Ninja &v, int atk){
   vie_v -= atk - degatReel ;
   if (vie_v < 0) v.setVie(0);
   else{
+    std::cout << v.getNom() << " a perdu "<< atk-degatReel <<" pv\n";
     v.setVie(vie_v);
   }
 }

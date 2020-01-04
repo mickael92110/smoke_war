@@ -5,34 +5,45 @@
 #include "kageAtk.hh"
 #include "kageDef.hh"
 #include "kageSoin.hh"
+#include "village.hh"
+#include "konoha.hh"
+#include "Fenetre.hh"
 
 
-
-int main(void){
-  Attaquant sasuke;
-  Defenseur naruto;
-  Soigneur sakura;
-  KageAtk Minato;
-  KageDef Gaara;
-  KageSoin Tsunade;
-
-  sasuke.toString();
-  naruto.toString();
-  sakura.toString();
-  Minato.toString();
-  Gaara.toString();
-  Tsunade.toString();
-  // Attaquant sakura;
-  // sakura.toString();
+int main(int argc, char *argv[]){
+  // Attaquant sasuke;
   // Defenseur naruto;
-  // naruto.toString();
-  // sasuke.technique(sakura);
-  // naruto.technique(sasuke);
-  // naruto.technique(sasuke);
-  // naruto.techniqueSpecial(sasuke);
-  // naruto.rechargeChakra();
-  // naruto.toString();
+  // Soigneur sakura;
+  // KageAtk Minato;
+  // KageDef Gaara;
+  // KageSoin Tsunade;
+  //
+  // std::vector<Ninja*> listeNinja;
   // sasuke.toString();
+  //
+  // Konoha konoha;
+  //
+  // konoha.addNinja(sasuke);
+  // konoha.addNinja(naruto);
+  // konoha.addNinja(sakura);
+  // konoha.addNinja(Minato);
+  // konoha.addNinja(Gaara);
+  // konoha.addNinja(Tsunade);
+  //
+  // konoha.capaciteVillage();
+  //
+  // sasuke.toString();
+  // sasuke.techniqueSpecial(naruto,sakura,Minato,Gaara);
+  //
+  // Gaara.toString();
+  // std::cout<<konoha.toString()<<std::endl;
+
+  Gtk::Main app(argc, argv);
+  Fenetre fenetre;
+  Gtk::Main::run(fenetre);
+
+
+
 
 
   return 0;

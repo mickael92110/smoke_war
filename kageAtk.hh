@@ -17,6 +17,7 @@ public:
   KageAtk() : Attaquant(200, 200, "Minato", 70){}
 
   // Fonctions
+  //Les v sont les Ninja de l'equipe adverse, t les Ninja de l'equipe
   void attaqueKage(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4, Ninja &t1, Ninja &t2, Ninja &t3, Ninja &t4);
 
 };

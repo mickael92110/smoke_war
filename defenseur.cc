@@ -42,10 +42,10 @@ void Defenseur::techniqueSpecial(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4){
   std::cout<< this->_nom <<" defense special de " << this->_pointDef*2 <<" def "<< v2.getNom()<<std::endl;
   std::cout<< this->_nom <<" defense special de " << this->_pointDef*2 <<" def "<< v3.getNom()<<std::endl;
   std::cout<< this->_nom <<" defense special de " << this->_pointDef*2 <<" def "<< v4.getNom()<<std::endl;
-  this->reducVie(v1, this->_pointDef*2);
-  this->reducVie(v2, this->_pointDef*2);
-  this->reducVie(v3, this->_pointDef*2);
-  this->reducVie(v4, this->_pointDef*2);
+  this->augmDef(v1, this->_pointDef*2);
+  this->augmDef(v2, this->_pointDef*2);
+  this->augmDef(v3, this->_pointDef*2);
+  this->augmDef(v4, this->_pointDef*2);
   this->_chakra -= 80;
   --this->compteurAtkSpe;
 }

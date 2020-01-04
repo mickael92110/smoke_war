@@ -1,0 +1,59 @@
+#include "village.hh"
+
+Village::Village(std::vector <Ninja*> listeNinja, std::string s) :
+_listeNinja(listeNinja),_capaciteAtk(0),_capaciteDef(0),_capaciteSoin(0),_nomVillage(s)
+{
+  updateCapacitePoint();
+}
+
+Village::Village(std::string s) :
+_capaciteAtk(0),_capaciteDef(0),_capaciteSoin(0),_nomVillage(s)
+{
+
+}
+
+void Village::addNinja(Ninja &n){
+  (this->_listeNinja).push_back(&n);
+  this->_capaciteAtk += n.getPointAtk();
+  this->_capaciteDef += n.getPointDef();
+  this->_capaciteSoin += n.getPointSoin();
+}
+
+void Village::popNinja(Ninja &n){
+  (this->_listeNinja).push_back(&n);
+  this->_capaciteAtk -= n.getPointAtk();
+  this->_capaciteDef -= n.getPointDef();
+  this->_capaciteSoin -= n.getPointSoin();
+}
+
+
+void Village::updateCapacitePoint()
+{
+  for(auto it = this->_listeNinja.begin(); it!= this->_listeNinja.end(); ++it)
+  {
+    //std::cout<< (*it)->getNom() << std::endl;
+    this->_capaciteAtk += (*it)->getPointAtk();
+    this->_capaciteDef += (*it)->getPointDef();
+    this->_capaciteSoin += (*it)->getPointSoin();
+  }
+}
+
+std::string Village::toString(){
+  std::string listeNom;
+  listeNom+="########################\n";
+
+  listeNom += "Nom village : " + this->_nomVillage + "\n\n";
+
+  listeNom+="--Liste Ninja--\n\n";
+  for(auto it = this->_listeNinja.begin(); it!= this->_listeNinja.end(); ++it)
+  {
+    listeNom +=  (*it)->getNom();
+    listeNom += "\n";
+  }
+  listeNom += "\n--Total capacite village--\n\n";
+  listeNom += "Capacite Atk " + std::to_string(_capaciteAtk) + "\n";
+  listeNom += "Capacite Def " + std::to_string(_capaciteDef) + "\n";
+  listeNom += "Capacite Soin " + std::to_string(_capaciteSoin) + "\n";
+  listeNom+="########################";
+  return listeNom;
+}
