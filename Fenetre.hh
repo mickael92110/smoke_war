@@ -1,21 +1,66 @@
-#ifndef DEF_FENETRE
-#define DEF_FENETRE
+#ifndef GTKMM_EXAMPLEWINDOW_H
+#define GTKMM_EXAMPLEWINDOW_H
 
 #include <gtkmm.h>
 
 
-class Fenetre : public Gtk::Window {
-    public :
-        Fenetre();
-    private :
-        // Gtk::Button bouton;
-        Gtk::Image background;
-        Gtk::Button choix1;
-        Gtk::Button choix2;
-        Gtk::Button choix3;
-        Gtk::VBox boiteV;
-        Gtk::HBox boiteH;
 
+
+//exemple fenetre pop_up
+
+// class ExampleWindow : public Gtk::Window
+// {
+// public:
+//   ExampleWindow();
+//   virtual ~ExampleWindow();
+//
+// protected:
+//   //Signal handlers:
+//   void on_button_info_clicked();
+//   void on_button_question_clicked();
+//
+//   //Child widgets:
+//   Gtk::ButtonBox m_ButtonBox;
+//   Gtk::Button m_Button_Info, m_Button_Question;
+// };
+//
+// #endif //GTKMM_EXAMPLEWINDOW_H
+
+
+
+
+//exemple zone de texte
+
+class ExampleWindow : public Gtk::Window
+{
+public:
+  ExampleWindow();
+  virtual ~ExampleWindow();
+
+protected:
+
+  void fill_buffers();
+
+  //Signal handlers:
+  void on_button_quit();
+  void on_button_buffer1();
+  void on_button_buffer2();
+  void on_button_buffer3();
+  void on_button_buffer4();
+
+  //Child widgets:
+  Gtk::Box m_VBox;
+
+  Gtk::ScrolledWindow m_ScrolledWindow;
+  Gtk::TextView m_TextView;
+
+  Glib::RefPtr<Gtk::TextBuffer> m_refTextBuffer1, m_refTextBuffer2,m_refTextBuffer3,m_refTextBuffer4;
+
+  Gtk::ButtonBox m_ButtonBox1;
+  Gtk::ButtonBox m_ButtonBox2;
+
+  Gtk::Button m_Button_Quit, m_Button_Buffer1, m_Button_Buffer2,
+  m_Button_Buffer3, m_Button_Buffer4 ;
 };
 
-#endif
+#endif //GTKMM_EXAMPLEWINDOW_H

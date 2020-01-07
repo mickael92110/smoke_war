@@ -1,50 +1,30 @@
-#include "attaquant.hh"
-#include "soigneur.hh"
-#include "defenseur.hh"
-#include "ninja.hh"
-#include "kageAtk.hh"
-#include "kageDef.hh"
-#include "kageSoin.hh"
-#include "village.hh"
-#include "konoha.hh"
 #include "Fenetre.hh"
+#include <gtkmm/application.h>
 
+int main(int argc, char *argv[])
+{
+  auto app = Gtk::Application::create(argc, argv, "org.gtkmm.example");
 
-int main(int argc, char *argv[]){
-  // Attaquant sasuke;
-  // Defenseur naruto;
-  // Soigneur sakura;
-  // KageAtk Minato;
-  // KageDef Gaara;
-  // KageSoin Tsunade;
-  //
-  // std::vector<Ninja*> listeNinja;
-  // sasuke.toString();
-  //
-  // Konoha konoha;
-  //
-  // konoha.addNinja(sasuke);
-  // konoha.addNinja(naruto);
-  // konoha.addNinja(sakura);
-  // konoha.addNinja(Minato);
-  // konoha.addNinja(Gaara);
-  // konoha.addNinja(Tsunade);
-  //
-  // konoha.capaciteVillage();
-  //
-  // sasuke.toString();
-  // sasuke.techniqueSpecial(naruto,sakura,Minato,Gaara);
-  //
-  // Gaara.toString();
-  // std::cout<<konoha.toString()<<std::endl;
+  ExampleWindow window;
 
-  Gtk::Main app(argc, argv);
-  Fenetre fenetre;
-  Gtk::Main::run(fenetre);
-
-
-
-
-
-  return 0;
+  //Shows the window and returns when it is closed.
+  return app->run(window);
 }
+
+// set_title("Smoke Wars");
+// set_icon_from_file("icon.jpeg");
+// set_border_width(10);
+// resize(1080, 608);
+// set_position(Gtk::WIN_POS_CENTER);
+//
+// //Gtk::VBox boiteV(false,10);
+// boiteV.pack_start(background);
+// //Gtk::HBox boiteH(true);
+// boiteV.pack_end(boiteH);
+// boiteH.pack_start(choix1);
+// boiteH.pack_start(choix2);
+// boiteH.pack_start(choix3);
+//
+// add(boiteV);
+//
+// show_all();
