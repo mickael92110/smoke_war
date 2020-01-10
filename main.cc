@@ -1,30 +1,90 @@
-#include "Fenetre.hh"
-#include <gtkmm/application.h>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
-int main(int argc, char *argv[])
+int main()
 {
-  auto app = Gtk::Application::create(argc, argv, "org.gtkmm.example");
+    // Create the main window
+    sf::RenderWindow window(sf::VideoMode(1312, 700), "Life is Smoke");
+    //Icon
+    sf::Image icon;
+    icon.loadFromFile("icon.jpeg"); // File/Image/Pixel
+    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-  ExampleWindow window;
+    // Load a sprite to display
+    sf::Texture menu, jouer;
+    if (!menu.loadFromFile("menu.png"))
+        return EXIT_FAILURE;
+    sf::Sprite sprite_menu(menu);
 
-  //Shows the window and returns when it is closed.
-  return app->run(window);
+    jouer.loadFromFile("jouer.png");
+    sf::Sprite sprite_jouer(jouer);
+    sprite_jouer.setPosition(420,500);
+    sprite_jouer.setScale(1.5,1.5);
+
+    // Load a music to play
+    sf::Music music;
+    if (!music.openFromFile("naruto_theme.ogg"))
+        return EXIT_FAILURE;
+    // Play the music
+    music.play();
+    music.setLoop(true);
+
+  /*  // Create a graphical text to display
+    sf::Font font;
+    if (!font.loadFromFile("Amatic-Bold.ttf"))
+        return EXIT_FAILURE;
+    sf::Text text("Life is Smoke", font, 150);
+    text.setPosition(650,350);*/
+
+
+    while (window.isOpen())
+    {
+        // Process events
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+          switch (event.type)
+          {
+             // fenêtre fermée
+             case sf::Event::Closed:
+                 window.close();
+                 break;
+
+            case sf::Event::MouseMoved : // Mouvement de la souris
+
+                 break;
+
+             // touche pressée
+             case sf::Event::MouseButtonPressed:
+             {
+               //int MouseX =  event.mouseMove.x;
+               //int MouseY =  event.mouseMove.y;
+
+               break;
+             }
+
+             // on ne traite pas les autres types d'évènements
+             default:
+                 break;
+         }
+
+
+
+
+
+        }
+        // Clear screen
+        window.clear();
+        // Draw the sprite
+        window.draw(sprite_menu);
+        window.draw(sprite_jouer);
+        // Draw the string
+        //window.draw(text);
+        // Update the window
+        window.display();
+    }
+    // Game game;
+    // game.run();
+    return EXIT_SUCCESS;
 }
-
-// set_title("Smoke Wars");
-// set_icon_from_file("icon.jpeg");
-// set_border_width(10);
-// resize(1080, 608);
-// set_position(Gtk::WIN_POS_CENTER);
-//
-// //Gtk::VBox boiteV(false,10);
-// boiteV.pack_start(background);
-// //Gtk::HBox boiteH(true);
-// boiteV.pack_end(boiteH);
-// boiteH.pack_start(choix1);
-// boiteH.pack_start(choix2);
-// boiteH.pack_start(choix3);
-//
-// add(boiteV);
-//
-// show_all();
