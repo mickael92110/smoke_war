@@ -153,7 +153,7 @@ void gestionSouris() {
 
   //Si la souris va sur bouton jouer
   if (affiche_menu == 1) {
-    if((mx>=420) && (mx<770) && (my>=500) && (my<619)){
+    if((mx>=420) && (mx<900) && (my>=500) && (my<650)){
       sprite_jouer.setColor(sf::Color(0, 0, 0));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         affiche_menu = 0;
