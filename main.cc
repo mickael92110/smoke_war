@@ -23,7 +23,7 @@ sf::RectangleShape sasuke,sakura,naruto,minato,tsunade;
 sf::RectangleShape gaara,temari,kankuro,shiyo,sasori;
 sf::RectangleShape haku,zabuza,kisame,hinata,shikamaru;
 
-
+//Selection pour Afficher
 int affiche_menu, affiche_choix,affichePersoKonoha,affichePersoSuna,affichePersoKiri;
 
 
@@ -202,7 +202,173 @@ void gestionSouris() {
 
   }
 
+  if (affichePersoKonoha==1) {
+    //va sur naruto
+    if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
+      naruto.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        //faire qqch
+      }
+    }
+    else {
+      naruto.setFillColor(sf::Color(255, 255, 255));
+    }
 
+
+
+      if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
+        tsunade.setFillColor(sf::Color(255, 255, 255, 128));
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+          //faire qqch
+        }
+      }
+      else {
+        tsunade.setFillColor(sf::Color(255, 255, 255));
+      }
+
+        if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
+          sasuke.setFillColor(sf::Color(255, 255, 255, 128));
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            //faire qqch
+          }
+        }
+
+        else {
+          sasuke.setFillColor(sf::Color(255, 255, 255));
+        }
+
+          if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
+            sakura.setFillColor(sf::Color(255, 255, 255, 128));
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              //faire qqch
+            }
+          }
+          else {
+            sakura.setFillColor(sf::Color(255, 255, 255));
+          }
+            if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
+              minato.setFillColor(sf::Color(255, 255, 255, 128));
+              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                //faire qqch
+              }
+            }
+            else {
+              minato.setFillColor(sf::Color(255, 255, 255));
+            }
+
+  }
+
+  if (affichePersoSuna==1) {
+    //va sur naruto
+    if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
+      gaara.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        //faire qqch
+      }
+    }
+    else {
+      gaara.setFillColor(sf::Color(255, 255, 255));
+    }
+
+
+
+      if((mx>=480) && (mx<560) && (my>=300) && (my<380)) {
+        temari.setFillColor(sf::Color(255, 255, 255, 128));
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+          //faire qqch
+        }
+      }
+      else {
+        temari.setFillColor(sf::Color(255, 255, 255));
+      }
+
+        if((mx>=480) && (mx<560) && (my>=400) && (my<480)) {
+          kankuro.setFillColor(sf::Color(255, 255, 255, 128));
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            //faire qqch
+          }
+        }
+
+        else {
+          kankuro.setFillColor(sf::Color(255, 255, 255));
+        }
+
+          if((mx>=480) && (mx<560) && (my>=500) && (my<580)) {
+            shiyo.setFillColor(sf::Color(255, 255, 255, 128));
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              //faire qqch
+            }
+          }
+          else {
+            shiyo.setFillColor(sf::Color(255, 255, 255));
+          }
+            if((mx>=480) && (mx<560) && (my>=600) && (my<680)) {
+              sasori.setFillColor(sf::Color(255, 255, 255, 128));
+              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                //faire qqch
+              }
+            }
+            else {
+              sasori.setFillColor(sf::Color(255, 255, 255));
+            }
+
+  }
+
+  if (affichePersoKiri==1) {
+    //va sur naruto
+    if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
+      haku.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        //faire qqch
+      }
+    }
+    else {
+      haku.setFillColor(sf::Color(255, 255, 255));
+    }
+
+
+
+      if((mx>=880) && (mx<960) && (my>=300) && (my<380)) {
+        zabuza.setFillColor(sf::Color(255, 255, 255, 128));
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+          //faire qqch
+        }
+      }
+      else {
+        zabuza.setFillColor(sf::Color(255, 255, 255));
+      }
+
+        if((mx>=880) && (mx<960) && (my>=400) && (my<480)) {
+          kisame.setFillColor(sf::Color(255, 255, 255, 128));
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            //faire qqch
+          }
+        }
+
+        else {
+          kisame.setFillColor(sf::Color(255, 255, 255));
+        }
+
+          if((mx>=880) && (mx<960) && (my>=500) && (my<580)) {
+            hinata.setFillColor(sf::Color(255, 255, 255, 128));
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              //faire qqch
+            }
+          }
+          else {
+            hinata.setFillColor(sf::Color(255, 255, 255));
+          }
+            if((mx>=880) && (mx<960) && (my>=600) && (my<680)) {
+              shikamaru.setFillColor(sf::Color(255, 255, 255, 128));
+              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                //faire qqch
+              }
+            }
+            else {
+              shikamaru.setFillColor(sf::Color(255, 255, 255));
+            }
+
+  }
 }
 int CreationPersoSuna() {
 
@@ -339,6 +505,8 @@ int CreationPersoKonoha() {
 
    return 0;
 }
+
+
 int main()
 {
     // Create the main window
