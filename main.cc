@@ -15,8 +15,13 @@ sf::Sprite sprite_menu, sprite_jouer;
 //Choix
 sf::Texture choix,village1,village2,village3;
 sf::Texture t_naruto,t_sasuke, t_sakura, t_minato, t_tsunade;
+sf::Texture t_gaara,t_temari, t_kankuro, t_shiyo, t_sasori;
+sf::Texture t_haku,t_zabuza, t_kisame, t_hinata, t_shikamaru;
 sf::Sprite sprite_choix;
-sf::RectangleShape vil1, vil2,vil3, sasuke,sakura,naruto,minato,tsunade;
+sf::RectangleShape vil1, vil2,vil3;
+sf::RectangleShape sasuke,sakura,naruto,minato,tsunade;
+sf::RectangleShape gaara,temari,kankuro,shiyo,sasori;
+sf::RectangleShape haku,zabuza,kisame,hinata,shikamaru;
 
 
 int affiche_menu, affiche_choix,affichePersoKonoha,affichePersoSuna,affichePersoKiri;
@@ -119,10 +124,18 @@ void Affichage(){
     window.draw(tsunade);
     }
   if (affichePersoSuna==1) {
-
+    window.draw(gaara);
+    window.draw(temari);
+    window.draw(kankuro);
+    window.draw(shiyo);
+    window.draw(sasori);
     }
   if (affichePersoKiri==1) {
-
+    window.draw(haku);
+    window.draw(zabuza);
+    window.draw(kisame);
+    window.draw(hinata);
+    window.draw(shikamaru);
     }
 
 
@@ -191,7 +204,97 @@ void gestionSouris() {
 
 
 }
-int CreationPerso() {
+int CreationPersoSuna() {
+
+  gaara = RectangleShape(sf::Vector2f(80, 80));
+  temari = RectangleShape(sf::Vector2f(80, 80));
+  kankuro = RectangleShape(sf::Vector2f(80, 80));
+  shiyo = RectangleShape(sf::Vector2f(80, 80));
+  sasori = RectangleShape(sf::Vector2f(80, 80));
+
+  if (!t_gaara.loadFromFile("Image/gaara.jpg") )
+      return EXIT_FAILURE;
+   //t_naruto.setSmooth(true);
+   gaara.setTexture(&t_gaara); // texture est un sf::Texture
+   gaara.setTextureRect(sf::IntRect(0, 0, 788, 788));
+   gaara.setPosition(480,200);
+
+   if (!t_temari.loadFromFile("Image/temari.jpg") )
+       return EXIT_FAILURE;
+    //t_naruto.setSmooth(true);
+    temari.setTexture(&t_temari); // texture est un sf::Texture
+    temari.setTextureRect(sf::IntRect(40, 0, 300, 300));
+    temari.setPosition(480,300);
+
+    if (!t_kankuro.loadFromFile("Image/kankuro.jpg") )
+        return EXIT_FAILURE;
+     //t_naruto.setSmooth(true);
+     kankuro.setTexture(&t_kankuro); // texture est un sf::Texture
+     kankuro.setTextureRect(sf::IntRect(50, 0, 384, 384));
+     kankuro.setPosition(480,400);
+
+     if (!t_shiyo.loadFromFile("Image/shiyo.jpg") )
+         return EXIT_FAILURE;
+      //t_naruto.setSmooth(true);
+      shiyo.setTexture(&t_shiyo); // texture est un sf::Texture
+      shiyo.setTextureRect(sf::IntRect(0, 0, 250, 250));
+      shiyo.setPosition(480,500);
+
+      if (!t_sasori.loadFromFile("Image/sasori.jpg") )
+          return EXIT_FAILURE;
+       //t_naruto.setSmooth(true);
+       sasori.setTexture(&t_sasori); // texture est un sf::Texture
+       sasori.setTextureRect(sf::IntRect(0, 0, 1024, 1024));
+       sasori.setPosition(480,600);
+
+   return 0;
+}
+int CreationPersoKiri() {
+
+  haku = RectangleShape(sf::Vector2f(80, 80));
+  zabuza = RectangleShape(sf::Vector2f(80, 80));
+  kisame = RectangleShape(sf::Vector2f(80, 80));
+  hinata = RectangleShape(sf::Vector2f(80, 80));
+  shikamaru = RectangleShape(sf::Vector2f(80, 80));
+
+  if (!t_haku.loadFromFile("Image/haku.png") )
+      return EXIT_FAILURE;
+   //t_naruto.setSmooth(true);
+   haku.setTexture(&t_haku); // texture est un sf::Texture
+   haku.setTextureRect(sf::IntRect(200, 0, 480, 480));
+   haku.setPosition(880,200);
+
+   if (!t_zabuza.loadFromFile("Image/zabuza.png") )
+       return EXIT_FAILURE;
+    //t_naruto.setSmooth(true);
+    zabuza.setTexture(&t_zabuza); // texture est un sf::Texture
+    zabuza.setTextureRect(sf::IntRect(0, 0, 250, 250));
+    zabuza.setPosition(880,300);
+
+    if (!t_kisame.loadFromFile("Image/kisame.png") )
+        return EXIT_FAILURE;
+     //t_naruto.setSmooth(true);
+     kisame.setTexture(&t_kisame); // texture est un sf::Texture
+     kisame.setTextureRect(sf::IntRect(0, 0, 507, 507));
+     kisame.setPosition(880,400);
+
+     if (!t_hinata.loadFromFile("Image/hinata.png") )
+         return EXIT_FAILURE;
+      //t_naruto.setSmooth(true);
+      hinata.setTexture(&t_hinata); // texture est un sf::Texture
+      hinata.setTextureRect(sf::IntRect(0, 0, 500, 500));
+      hinata.setPosition(880,500);
+
+      if (!t_shikamaru.loadFromFile("Image/shikamaru.jpg") )
+          return EXIT_FAILURE;
+       //t_naruto.setSmooth(true);
+       shikamaru.setTexture(&t_shikamaru); // texture est un sf::Texture
+       shikamaru.setTextureRect(sf::IntRect(50, 0, 380, 380));
+       shikamaru.setPosition(880,600);
+
+   return 0;
+}
+int CreationPersoKonoha() {
 
   naruto = RectangleShape(sf::Vector2f(80, 80));
   sakura = RectangleShape(sf::Vector2f(80, 80));
@@ -250,7 +353,9 @@ int main()
     Musique();
 
     //Creation Personnages
-    CreationPerso();
+    CreationPersoKonoha();
+    CreationPersoSuna();
+    CreationPersoKiri();
 
     while (window.isOpen())
     {
