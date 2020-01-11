@@ -14,6 +14,7 @@ public:
   Soigneur(int vie, int chakra, std::string nom, int pointSoin) ;
   Soigneur(int vie, int chakra) ;
   Soigneur();
+  Soigneur(std::string nom);
 
   // Fonctions
   void technique(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);

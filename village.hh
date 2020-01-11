@@ -26,10 +26,11 @@ public:
   int getCapaciteAtk(){return _capaciteAtk;}
   int getCapaciteDef(){return _capaciteDef;}
   int getCapaciteSoin(){return _capaciteSoin;}
+  Ninja* getNinja(int i){return _listeNinja[i];}
   std::string toString();
 
 private :
-  void updateCapacitePoint();
+  //void updateCapacitePoint();
 protected:
 
   //attributs

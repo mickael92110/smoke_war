@@ -1,6 +1,17 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
+#include "village.hh"
+#include "konoha.hh"
+#include "suna.hh"
+#include "kumo.hh"
+#include "attaquant.hh"
+#include "defenseur.hh"
+#include "soigneur.hh"
+#include "kageAtk.hh"
+#include "kageDef.hh"
+#include "kageSoin.hh"
 
 using namespace sf;
 
@@ -23,10 +34,59 @@ sf::RectangleShape sasuke,sakura,naruto,minato,tsunade;
 sf::RectangleShape gaara,temari,kankuro,shiyo,sasori;
 sf::RectangleShape haku,zabuza,kisame,hinata,shikamaru;
 
+//texte
+sf::Font font;
+sf::Text text;
+sf::Text text_village;
+
 //Selection pour Afficher
-int affiche_menu, affiche_choix,affichePersoKonoha,affichePersoSuna,affichePersoKiri;
+int affiche_menu, affiche_choix, affichePersoKonoha, affichePersoSuna, affichePersoKiri;
+int affiche_text;
+int affiche_text_village;
+std::string buffer;
 
+//Creation objet
+Konoha konoha;
+Defenseur o_naruto("Naruto");
+Soigneur o_tsunade("Tsunade");
+Attaquant o_sasuke("Sasuke");
+Soigneur o_sakura("Sakura");
+KageAtk o_minato("Minato");
 
+Suna suna;
+KageDef o_gaara("Gaara");
+Defenseur o_temari("Temari");
+Attaquant o_kankura("Kankuro");
+Soigneur o_shiyo("Shiyo");
+Attaquant o_sasori("Sasori");
+
+Kumo kumo; //Faudra changer kumo en kiri
+Defenseur o_haku("Haku");
+Attaquant o_zabuza("Zabuza");
+Attaquant o_kisame("Kisame");
+Soigneur o_hinata("Hinata");
+Defenseur o_shikamaru("Shikamaru");
+
+void initVillage(){
+  konoha.addNinja(o_naruto);
+  konoha.addNinja(o_tsunade);
+  konoha.addNinja(o_sasuke);
+  konoha.addNinja(o_sakura);
+  konoha.addNinja(o_minato);
+
+  suna.addNinja(o_gaara);
+  suna.addNinja(o_temari);
+  suna.addNinja(o_kankura);
+  suna.addNinja(o_shiyo);
+  suna.addNinja(o_sasori);
+
+  kumo.addNinja(o_haku);
+  kumo.addNinja(o_zabuza);
+  kumo.addNinja(o_kisame);
+  kumo.addNinja(o_hinata);
+  kumo.addNinja(o_shikamaru);
+
+}
 int CreationMenu() {
   // Load a sprite to display
   affiche_menu = 1;
@@ -42,6 +102,12 @@ int CreationMenu() {
   sprite_jouer.setScale(1.5,1.5);
 
   return 0;
+}
+void toStringNinjaSpec(Village & v, int i, int x, int y){
+  buffer = v.getNinja(i)->toString();
+  text.setString(buffer);
+  text.setPosition(x,y);
+  affiche_text = 1;
 }
 void AfficheIcon() {
   icon.loadFromFile("Image/icon.jpeg"); // File/Image/Pixel
@@ -137,12 +203,19 @@ void Affichage(){
     window.draw(hinata);
     window.draw(shikamaru);
     }
-
+   if(affiche_text == 1) {
+    window.draw(text);
+   }
+   if(affiche_text_village ==1){
+     window.draw(text_village);
+   }
 
   }
   // Draw the string
   //window.draw(text);
   // Update the window
+  window.setPosition(Vector2i(350,150));
+  window.setSize(sf::Vector2u(1312,700));
   window.display();
 }
 void gestionSouris() {
@@ -161,7 +234,7 @@ void gestionSouris() {
       }
     }
     else
-      sprite_jouer.setColor(sf::Color(255, 255, 255));
+      sprite_jouer.setColor(sf::Color(255, 0, 0));
   }
   //Si la souris va sur les villages
   if (affiche_choix == 1) {
@@ -170,8 +243,12 @@ void gestionSouris() {
       vil1.setFillColor(sf::Color(255, 255, 255, 128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         affichePersoKonoha = 1;
+        affiche_text_village = 1;
+        text_village.setString("Konhoa");
+        text_village.setPosition(220,5);
         affichePersoSuna = 0;
         affichePersoKiri = 0;
+        affiche_text = 0;
       }
     }
     else
@@ -181,8 +258,12 @@ void gestionSouris() {
         vil2.setFillColor(sf::Color(255, 255, 255, 128));
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
           affichePersoKonoha = 0;
+          affiche_text_village = 1;
+          text_village.setString("Suna");
+          text_village.setPosition(640,5);
           affichePersoSuna = 1;
           affichePersoKiri = 0;
+          affiche_text = 0;
         }
       }
       else
@@ -193,8 +274,12 @@ void gestionSouris() {
             vil3.setFillColor(sf::Color(255, 255, 255, 128));
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
               affichePersoKonoha = 0;
+              affiche_text_village = 1;
+              text_village.setString("Kiri");
+              text_village.setPosition(1040,5);
               affichePersoSuna = 0;
               affichePersoKiri = 1;
+              affiche_text = 0;
             }
           }
           else
@@ -207,7 +292,11 @@ void gestionSouris() {
     if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
       naruto.setFillColor(sf::Color(255, 255, 255, 128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        //faire qqch
+        toStringNinjaSpec(konoha, 0, 170, 170);
+        // buffer = konoha.getNinja(0)->toString();
+        // text.setString(buffer);
+        // text.setPosition(170,170);
+        // affiche_text = 1;
       }
     }
     else {
@@ -216,45 +305,62 @@ void gestionSouris() {
 
 
 
-      if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
-        tsunade.setFillColor(sf::Color(255, 255, 255, 128));
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          //faire qqch
-        }
+    if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
+      tsunade.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        toStringNinjaSpec(konoha, 1, 170, 270);
+        // buffer = konoha.getNinja(1)->toString();
+        // text.setString(buffer);
+        // text.setPosition(170,270);
+        // affiche_text = 1;
       }
-      else {
-        tsunade.setFillColor(sf::Color(255, 255, 255));
+    }
+    else {
+      tsunade.setFillColor(sf::Color(255, 255, 255));
+    }
+
+    if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
+      sasuke.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        toStringNinjaSpec(konoha, 2, 170, 370);
+        // buffer = konoha.getNinja(2)->toString();
+        // text.setString(buffer);
+        // text.setPosition(170,370);
+        // affiche_text = 1;
       }
+    }
 
-        if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
-          sasuke.setFillColor(sf::Color(255, 255, 255, 128));
-          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            //faire qqch
-          }
-        }
+    else {
+      sasuke.setFillColor(sf::Color(255, 255, 255));
+    }
 
-        else {
-          sasuke.setFillColor(sf::Color(255, 255, 255));
-        }
+    if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
+      sakura.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        toStringNinjaSpec(konoha, 3, 170, 470);
+        // buffer = konoha.getNinja(3)->toString();
+        // text.setString(buffer);
+        // text.setPosition(170,470);
+        // affiche_text = 1;
+      }
+    }
+    else {
+      sakura.setFillColor(sf::Color(255, 255, 255));
+    }
 
-          if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
-            sakura.setFillColor(sf::Color(255, 255, 255, 128));
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-              //faire qqch
-            }
-          }
-          else {
-            sakura.setFillColor(sf::Color(255, 255, 255));
-          }
-            if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
-              minato.setFillColor(sf::Color(255, 255, 255, 128));
-              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                //faire qqch
-              }
-            }
-            else {
-              minato.setFillColor(sf::Color(255, 255, 255));
-            }
+    if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
+      minato.setFillColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        toStringNinjaSpec(konoha, 4, 170, 570);
+        // buffer = konoha.getNinja(4)->toString();
+        // text.setString(buffer);
+        // text.setPosition(170,570);
+        // affiche_text = 1;
+      }
+    }
+    else {
+      minato.setFillColor(sf::Color(255, 255, 255));
+    }
 
   }
 
@@ -263,7 +369,7 @@ void gestionSouris() {
     if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
       gaara.setFillColor(sf::Color(255, 255, 255, 128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        //faire qqch
+        toStringNinjaSpec(suna, 0, 570, 170);
       }
     }
     else {
@@ -275,7 +381,7 @@ void gestionSouris() {
       if((mx>=480) && (mx<560) && (my>=300) && (my<380)) {
         temari.setFillColor(sf::Color(255, 255, 255, 128));
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          //faire qqch
+          toStringNinjaSpec(suna, 1, 570, 270);
         }
       }
       else {
@@ -285,7 +391,7 @@ void gestionSouris() {
         if((mx>=480) && (mx<560) && (my>=400) && (my<480)) {
           kankuro.setFillColor(sf::Color(255, 255, 255, 128));
           if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            //faire qqch
+            toStringNinjaSpec(suna, 2, 570, 370);
           }
         }
 
@@ -296,7 +402,7 @@ void gestionSouris() {
           if((mx>=480) && (mx<560) && (my>=500) && (my<580)) {
             shiyo.setFillColor(sf::Color(255, 255, 255, 128));
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-              //faire qqch
+              toStringNinjaSpec(suna, 3, 570, 470);
             }
           }
           else {
@@ -305,7 +411,7 @@ void gestionSouris() {
             if((mx>=480) && (mx<560) && (my>=600) && (my<680)) {
               sasori.setFillColor(sf::Color(255, 255, 255, 128));
               if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                //faire qqch
+                toStringNinjaSpec(suna, 4, 570, 570);
               }
             }
             else {
@@ -319,7 +425,7 @@ void gestionSouris() {
     if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
       haku.setFillColor(sf::Color(255, 255, 255, 128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        //faire qqch
+        toStringNinjaSpec(kumo, 0, 970, 170);
       }
     }
     else {
@@ -331,7 +437,7 @@ void gestionSouris() {
       if((mx>=880) && (mx<960) && (my>=300) && (my<380)) {
         zabuza.setFillColor(sf::Color(255, 255, 255, 128));
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          //faire qqch
+          toStringNinjaSpec(kumo, 1, 970, 270);
         }
       }
       else {
@@ -341,7 +447,7 @@ void gestionSouris() {
         if((mx>=880) && (mx<960) && (my>=400) && (my<480)) {
           kisame.setFillColor(sf::Color(255, 255, 255, 128));
           if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            //faire qqch
+            toStringNinjaSpec(kumo, 2, 970, 370);
           }
         }
 
@@ -352,7 +458,7 @@ void gestionSouris() {
           if((mx>=880) && (mx<960) && (my>=500) && (my<580)) {
             hinata.setFillColor(sf::Color(255, 255, 255, 128));
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-              //faire qqch
+              toStringNinjaSpec(kumo, 3, 970, 470);
             }
           }
           else {
@@ -361,7 +467,7 @@ void gestionSouris() {
             if((mx>=880) && (mx<960) && (my>=600) && (my<680)) {
               shikamaru.setFillColor(sf::Color(255, 255, 255, 128));
               if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                //faire qqch
+                toStringNinjaSpec(kumo, 4, 970, 570);
               }
             }
             else {
@@ -505,12 +611,41 @@ int CreationPersoKonoha() {
 
    return 0;
 }
+int CreationTexte(){
+  if(!font.loadFromFile("Amatic-Bold.ttf")){
+    std::cout<<"Erreur texte"<<std::endl;
+  }
 
+  text.setString(buffer);
+  text.setFont(font);
+  text.setCharacterSize(24);
+  text.setFillColor(sf::Color::Black);
+  text.setStyle(sf::Text::Bold);
+
+
+  return 0;
+}
+int CreationTexteVillage(){
+  if(!font.loadFromFile("Amatic-Bold.ttf")){
+    std::cout<<"Erreur texte"<<std::endl;
+  }
+
+  text_village.setString(buffer);
+  text_village.setFont(font);
+  text_village.setCharacterSize(36);
+  text_village.setFillColor(sf::Color::Black);
+  text_village.setStyle(sf::Text::Bold);
+
+  return 0;
+}
 
 int main()
 {
+
     // Create the main window
     window.create(sf::VideoMode(1312, 700), "Life is Smoke");
+
+
     //Icon
     AfficheIcon();
     //Création menu
@@ -519,11 +654,14 @@ int main()
     CreationChoix();
     // Load a music to play
     Musique();
-
+    initVillage();
     //Creation Personnages
     CreationPersoKonoha();
     CreationPersoSuna();
     CreationPersoKiri();
+    CreationTexte();
+    CreationTexteVillage();
+
 
     while (window.isOpen())
     {
@@ -552,8 +690,11 @@ int main()
         Affichage();
 
     }
-    // Game game;
-    // game.run();
+    // initKonoha();
+    // buffer = konoha.getNinja(0)->toString();
+    // std::cout<<buffer<<std::endl;
+
+
     return EXIT_SUCCESS;
 }
 

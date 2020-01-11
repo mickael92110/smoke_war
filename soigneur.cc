@@ -1,5 +1,7 @@
 #include "soigneur.hh"
 
+
+
 Soigneur::Soigneur(int vie, int chakra, std::string nom, int pointSoin) :
 Ninja(vie,chakra,nom,10,30,pointSoin)
 {
@@ -9,6 +11,7 @@ Ninja(vie,chakra,nom,10,30,pointSoin)
 Soigneur::Soigneur(int vie, int chakra) :
 Ninja(vie,chakra)
 {
+
   srand (time(NULL));
   _pointAtk = 15;
   _pointDef = 20;
@@ -16,6 +19,14 @@ Ninja(vie,chakra)
   }
 
 Soigneur::Soigneur() : Ninja(150,100,"Sakura"){
+  srand (time(NULL));
+  _pointAtk = rand() % 15 + 10;
+  _pointDef = rand() % 15 + 10;
+  _pointSoin = rand() % 40 + 10;
+}
+
+Soigneur::Soigneur(std::string nom) : Ninja(100,100,nom){
+
   srand (time(NULL));
   _pointAtk = rand() % 15 + 10;
   _pointDef = rand() % 15 + 10;

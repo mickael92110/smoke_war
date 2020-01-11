@@ -15,6 +15,7 @@ public:
   KageAtk(int vie, int chakra, std::string nom, int pointAttaque): Attaquant(vie,chakra,nom,pointAttaque){}
   KageAtk(int vie, int chakra) : Attaquant(vie,chakra){}
   KageAtk() : Attaquant(200, 200, "Minato", 70){}
+  KageAtk(std::string nom) : Attaquant(200, 200, nom, 70){}
 
   // Fonctions
   //Les v sont les Ninja de l'equipe adverse, t les Ninja de l'equipe

@@ -15,6 +15,7 @@ public:
   KageDef(int vie, int chakra, std::string nom, int pointAttaque): Defenseur(vie,chakra,nom,pointAttaque){}
   KageDef(int vie, int chakra) : Defenseur(vie,chakra){}
   KageDef() : Defenseur(200, 200, "Gaara", 70){}
+  KageDef(std::string nom) : Defenseur(200, 200, nom, 70){}
 
   // Fonctions
   void defenseKage(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4, Ninja &t1, Ninja &t2, Ninja &t3, Ninja &t4);

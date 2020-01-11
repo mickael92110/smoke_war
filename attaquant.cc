@@ -1,5 +1,6 @@
 #include "attaquant.hh"
 
+
 Attaquant::Attaquant(int vie, int chakra, std::string nom, int pointAttaque) :
 Ninja(vie,chakra,nom,pointAttaque,30,10)
 {
@@ -9,6 +10,7 @@ Ninja(vie,chakra,nom,pointAttaque,30,10)
 Attaquant::Attaquant(int vie, int chakra) :
 Ninja(vie,chakra)
 {
+
   srand (time(NULL));
   _pointAtk = rand() % 20 + 10;
   _pointDef = 20;
@@ -16,6 +18,15 @@ Ninja(vie,chakra)
 }
 
 Attaquant::Attaquant() : Ninja(150,100,"Sasuke"){
+
+  srand (time(NULL));
+  _pointAtk = rand() % 30 + 20;
+  _pointDef = rand() % 20 + 10;
+  _pointSoin = rand() % 10 + 10;
+}
+
+Attaquant::Attaquant(std::string nom) : Ninja(100,100,nom){
+
   srand (time(NULL));
   _pointAtk = rand() % 30 + 20;
   _pointDef = rand() % 20 + 10;

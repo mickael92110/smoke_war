@@ -38,7 +38,7 @@ public:
   void setAtk(int atk){_pointAtk = atk;}
   void setDef(int def){_pointDef = def;}
   void setSoin(int soin){_pointSoin = soin;}
-  void toString();
+  std::string toString();
 
   //Fonction jeu
   void augmVie(Ninja &v,int vie);

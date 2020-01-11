@@ -1,5 +1,7 @@
 #include "defenseur.hh"
 
+
+
 Defenseur::Defenseur(int vie, int chakra, std::string nom, int pointDefense) :
 Ninja(vie,chakra,nom,20,pointDefense,20)
 {
@@ -8,6 +10,7 @@ Ninja(vie,chakra,nom,20,pointDefense,20)
 
 Defenseur::Defenseur(int vie, int chakra) :
 Ninja(vie,chakra){
+
   srand (time(NULL));
   _pointAtk = rand() % 20 + 5;
   _pointDef = 30;
@@ -15,6 +18,15 @@ Ninja(vie,chakra){
 }
 
 Defenseur::Defenseur() : Ninja(150,100,"Naruto"){
+
+  srand (time(NULL));
+  _pointAtk = rand() % 20 + 5;
+  _pointDef = rand() % 30 + 20;
+  _pointSoin = rand() % 10 + 10;
+}
+
+Defenseur::Defenseur(std::string nom) : Ninja(100,100,nom){
+
   srand (time(NULL));
   _pointAtk = rand() % 20 + 5;
   _pointDef = rand() % 30 + 20;

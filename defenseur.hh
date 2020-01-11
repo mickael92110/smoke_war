@@ -13,6 +13,7 @@ public:
   Defenseur(int vie, int chakra, std::string nom, int pointDefense);
   Defenseur(int vie, int chakra) ;
   Defenseur() ;
+  Defenseur(std::string nom);
 
   // Fonctions
   void technique(Ninja &v1, Ninja &v2, Ninja &v3, Ninja &v4);

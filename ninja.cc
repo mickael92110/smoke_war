@@ -19,17 +19,14 @@ Ninja::Ninja(int vie, int chakra, std::string nom) :  _vie(vie), _chakra(chakra)
   compteurAtkSpe = rand() % 4 + 2;
 }
 
-void Ninja::toString(){
-  std::cout << std::endl;
-  std::cout <<"nom : "<< this->_nom << std::endl;
-  std::cout <<"vie : "<< this->_vie << std::endl;
-  std::cout <<"chakra : "<< this->_chakra << std::endl;
-  std::cout <<"id : "<< this->_id << std::endl;
-  std::cout <<"cptAtckSpé : "<< this->compteurAtkSpe << std::endl;
-  std::cout <<"pointAtk : "<< this->_pointAtk << std::endl;
-  std::cout <<"pointDef : "<< this->_pointDef << std::endl;
-  std::cout <<"pointSoin : "<< this->_pointSoin << std::endl;
-  std::cout << std::endl;
+std::string Ninja::toString(){
+  std::string buffer;
+  buffer = "\n";
+  buffer += "Nom : " + this->_nom + "\t\tAtk : "+ std::to_string(this->_pointAtk)+"\n";
+  buffer += "Vie : " + std::to_string(this->_vie)+ "\t\t\t\t\tDef : "+ std::to_string(this->_pointDef)+ "\n";
+  buffer += "Chakra : " + std::to_string(this->_chakra)+ "\t\tSoin : "+ std::to_string(this->_pointSoin)+ "\n";
+  buffer += "\n";
+  return buffer;
 }
 
 void Ninja::augmVie(Ninja &v, int vie){
