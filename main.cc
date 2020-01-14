@@ -98,7 +98,7 @@ int CreationMenu() {
       return EXIT_FAILURE;
   sprite_menu = Sprite(menu);
 
-  if (!jouer.loadFromFile("Image/jouer.png", sf::IntRect(0,0,352,119)))
+  if (!jouer.loadFromFile("Image/jouerC.png", sf::IntRect(0,0,352,119)))
       return EXIT_FAILURE;
   jouer.setSmooth(true);
   sprite_jouer = Sprite(jouer);
@@ -843,97 +843,98 @@ int CreationPersoKonoha() {
    return 0;
 }
 int CreationTexte(){
-  if(!font.loadFromFile("Amatic-Bold.ttf")){
+  int tailleTexte = 20;
+  if(!font.loadFromFile("SF_Arch_Rival.ttf")){
     std::cout<<"Erreur texte"<<std::endl;
   }
   //STAT PERSONNAGE
   text1.setString(buffer);
   text1.setFont(font);
-  text1.setCharacterSize(24);
+  text1.setCharacterSize(tailleTexte);
   text1.setFillColor(sf::Color::Black);
   text1.setStyle(sf::Text::Bold);
 
   text2.setString(buffer);
   text2.setFont(font);
-  text2.setCharacterSize(24);
+  text2.setCharacterSize(tailleTexte);
   text2.setFillColor(sf::Color::Black);
   text2.setStyle(sf::Text::Bold);
 
   text3.setString(buffer);
   text3.setFont(font);
-  text3.setCharacterSize(24);
+  text3.setCharacterSize(tailleTexte);
   text3.setFillColor(sf::Color::Black);
   text3.setStyle(sf::Text::Bold);
 
   text4.setString(buffer);
   text4.setFont(font);
-  text4.setCharacterSize(24);
+  text4.setCharacterSize(tailleTexte);
   text4.setFillColor(sf::Color::Black);
   text4.setStyle(sf::Text::Bold);
 
   text5.setString(buffer);
   text5.setFont(font);
-  text5.setCharacterSize(24);
+  text5.setCharacterSize(tailleTexte);
   text5.setFillColor(sf::Color::Black);
   text5.setStyle(sf::Text::Bold);
 
   text6.setString(buffer);
   text6.setFont(font);
-  text6.setCharacterSize(24);
+  text6.setCharacterSize(tailleTexte);
   text6.setFillColor(sf::Color::Black);
   text6.setStyle(sf::Text::Bold);
 
   text7.setString(buffer);
   text7.setFont(font);
-  text7.setCharacterSize(24);
+  text7.setCharacterSize(tailleTexte);
   text7.setFillColor(sf::Color::Black);
   text7.setStyle(sf::Text::Bold);
 
   text8.setString(buffer);
   text8.setFont(font);
-  text8.setCharacterSize(24);
+  text8.setCharacterSize(tailleTexte);
   text8.setFillColor(sf::Color::Black);
   text8.setStyle(sf::Text::Bold);
 
   text9.setString(buffer);
   text9.setFont(font);
-  text9.setCharacterSize(24);
+  text9.setCharacterSize(tailleTexte);
   text9.setFillColor(sf::Color::Black);
   text9.setStyle(sf::Text::Bold);
 
   text10.setString(buffer);
   text10.setFont(font);
-  text10.setCharacterSize(24);
+  text10.setCharacterSize(tailleTexte);
   text10.setFillColor(sf::Color::Black);
   text10.setStyle(sf::Text::Bold);
 
   text11.setString(buffer);
   text11.setFont(font);
-  text11.setCharacterSize(24);
+  text11.setCharacterSize(tailleTexte);
   text11.setFillColor(sf::Color::Black);
   text11.setStyle(sf::Text::Bold);
 
   text12.setString(buffer);
   text12.setFont(font);
-  text12.setCharacterSize(24);
+  text12.setCharacterSize(tailleTexte);
   text12.setFillColor(sf::Color::Black);
   text12.setStyle(sf::Text::Bold);
 
   text13.setString(buffer);
   text13.setFont(font);
-  text13.setCharacterSize(24);
+  text13.setCharacterSize(tailleTexte);
   text13.setFillColor(sf::Color::Black);
   text13.setStyle(sf::Text::Bold);
 
   text14.setString(buffer);
   text14.setFont(font);
-  text14.setCharacterSize(24);
+  text14.setCharacterSize(tailleTexte);
   text14.setFillColor(sf::Color::Black);
   text14.setStyle(sf::Text::Bold);
 
   text15.setString(buffer);
   text15.setFont(font);
-  text15.setCharacterSize(24);
+  text15.setCharacterSize(tailleTexte);
   text15.setFillColor(sf::Color::Black);
   text15.setStyle(sf::Text::Bold);
 
@@ -952,16 +953,16 @@ int CreationTexte(){
   consigne2.setStyle(sf::Text::Bold);
 
   consigne1.setString("Joueur 1 Veuillez Selectionner votre village et 3 Personnages");
-  consigne1.setPosition(220,250);
+  consigne1.setPosition(120,250);
 
   consigne2.setString("Joueur 2 Veuillez Selectionner votre village et 3 Personnages");
-  consigne2.setPosition(220,250);
+  consigne2.setPosition(120,250);
 
 
   return 0;
 }
 int CreationTexteVillage(){
-  if(!font.loadFromFile("Amatic-Bold.ttf")){
+  if(!font.loadFromFile("SF_Arch_Rival.ttf")){
     std::cout<<"Erreur texte"<<std::endl;
   }
 
@@ -984,13 +985,13 @@ int CreationTexteVillage(){
   text_kiri.setStyle(sf::Text::Bold);
 
   text_konoha.setString("Konoha");
-  text_konoha.setPosition(220,5);
+  text_konoha.setPosition(200,5);
 
   text_suna.setString("Suna");
-  text_suna.setPosition(640,5);
+  text_suna.setPosition(610,5);
 
   text_kiri.setString("Kiri");
-  text_kiri.setPosition(1040,5);
+  text_kiri.setPosition(1030,5);
 
   return 0;
 }
@@ -1002,7 +1003,7 @@ int MessageChoix(){
   sprite_choix.setPosition(0,-500);
   //Ecriture des consignes
 
-  if (!valider.loadFromFile("Image/valider.png"))
+  if (!valider.loadFromFile("Image/validerC.png"))
       return EXIT_FAILURE;
   sprite_valider = Sprite(valider);
   valider.setSmooth(true);
