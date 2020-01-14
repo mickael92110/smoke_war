@@ -1,17 +1,17 @@
-#ifndef SUNA_H
-#define SUNA_H
+#ifndef KIRI_H
+#define KIRI_H
 
 #include <iostream>
 #include "village.hh"
 
-class Suna : public Village{
+class Kiri : public Village{
 
 
 public:
 
   //Constructeur
-  Suna();
-  Suna(Village&);
+  Kiri();
+  Kiri(Village&);
 
   // Fonctions
   void capaciteVillage();

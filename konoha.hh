@@ -11,6 +11,8 @@ public:
 
   //Constructeur
   Konoha();
+  Konoha(Village& v);
+  
 
   // Fonctions
   void capaciteVillage();

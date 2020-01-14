@@ -3,7 +3,7 @@
 Village::Village(std::vector <Ninja*> listeNinja, std::string s) :
 _listeNinja(listeNinja),_capaciteAtk(0),_capaciteDef(0),_capaciteSoin(0),_nomVillage(s)
 {
-  //updateCapacitePoint();
+
 }
 
 Village::Village(std::string s) :
@@ -26,17 +26,6 @@ void Village::popNinja(Ninja &n){
   this->_capaciteSoin -= n.getPointSoin();
 }
 
-
-// void Village::updateCapacitePoint()
-// {
-//   for(auto it = this->_listeNinja.begin(); it!= this->_listeNinja.end(); ++it)
-//   {
-//     //std::cout<< (*it)->getNom() << std::endl;
-//     this->_capaciteAtk += (*it)->getPointAtk();
-//     this->_capaciteDef += (*it)->getPointDef();
-//     this->_capaciteSoin += (*it)->getPointSoin();
-//   }
-// }
 
 std::string Village::toString(){
   std::string listeNom;
@@ -65,4 +54,12 @@ bool Village::faitPartiDuVillage(std::string n) {
     }
   }
   return false;
+}
+
+bool Village::operator==( std::string ninja){
+  return this->faitPartiDuVillage(ninja);
+}
+
+bool Village::isEmpty(){
+  return _listeNinja.empty();
 }

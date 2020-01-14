@@ -4,6 +4,14 @@ Suna::Suna():Village("Suna"){
 
 }
 
+Suna::Suna(Village& v){
+  this->_capaciteAtk = v.getCapaciteAtk();
+  this->_capaciteDef = v.getCapaciteDef();
+  this->_capaciteSoin = v.getCapaciteSoin();
+  this->_nomVillage = "Suna";
+  this->_listeNinja = v.getListeNinja();
+}
+
 void Suna::capaciteVillage()
 {
   int chakra;

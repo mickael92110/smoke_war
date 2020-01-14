@@ -1,25 +1,25 @@
-#include"konoha.hh"
+#include"kiri.hh"
 
-Konoha::Konoha():Village("Konoha"){
+Kiri::Kiri():Village("Kiri"){
 
 }
 
-Konoha::Konoha(Village& v){
+Kiri::Kiri(Village& v){
   this->_capaciteAtk = v.getCapaciteAtk();
   this->_capaciteDef = v.getCapaciteDef();
   this->_capaciteSoin = v.getCapaciteSoin();
-  this->_nomVillage = "Konoha";
+  this->_nomVillage = "Kiri";
   this->_listeNinja = v.getListeNinja();
 }
 
-void Konoha::capaciteVillage()
+void Kiri::capaciteVillage()
 {
-  int vie;
+  int def;
   for(auto it = this->_listeNinja.begin(); it!= this->_listeNinja.end(); ++it)
   {
     //std::cout<< (*it)->getNom() << std::endl;
-    vie = (*it)->getVie();
-    vie += 20;
-    (*it)->setVie(vie);
+    def = (*it)->getPointDef();
+    def += 20;
+    (*it)->setDef(def);
   }
 }
