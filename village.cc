@@ -57,3 +57,12 @@ std::string Village::toString(){
   listeNom+="########################";
   return listeNom;
 }
+
+bool Village::faitPartiDuVillage(std::string n) {
+  for(size_t i = 0; i < this->_listeNinja.size(); i++) {
+    if (n == this->_listeNinja[i]->getNom()) {
+      return true;
+    }
+  }
+  return false;
+}

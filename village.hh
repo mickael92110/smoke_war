@@ -20,7 +20,7 @@ public:
   Village() : _capaciteAtk(0),_capaciteDef(0),_capaciteSoin(0),_nomVillage("Village cache"){}
 
   // Fonctions
-  virtual void capaciteVillage() = 0;
+  void capaciteVillage();
   void addNinja(Ninja &n);
   void popNinja(Ninja &n);
   int getCapaciteAtk(){return _capaciteAtk;}
@@ -28,6 +28,8 @@ public:
   int getCapaciteSoin(){return _capaciteSoin;}
   Ninja* getNinja(int i){return _listeNinja[i];}
   std::string toString();
+  std::vector <Ninja*> getListeNinja() {return _listeNinja;}
+  bool faitPartiDuVillage(std::string s);
 
 private :
   //void updateCapacitePoint();
