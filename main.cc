@@ -117,15 +117,15 @@ void toStringNinjaSpecKonoha(Village & v, int x, int y){
   text2.setString(buffer);
   text2.setPosition(x,y+100);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(2)->toString();
   text3.setString(buffer);
   text3.setPosition(x,y+200);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(3)->toString();
   text4.setString(buffer);
   text4.setPosition(x,y+300);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(4)->toString();
   text5.setString(buffer);
   text5.setPosition(x,y+400);
 }
@@ -138,15 +138,15 @@ void toStringNinjaSpecSuna(Village & v, int x, int y){
   text7.setString(buffer);
   text7.setPosition(x,y+100);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(2)->toString();
   text8.setString(buffer);
   text8.setPosition(x,y+200);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(3)->toString();
   text9.setString(buffer);
   text9.setPosition(x,y+300);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(4)->toString();
   text10.setString(buffer);
   text10.setPosition(x,y+400);
 }
@@ -159,15 +159,15 @@ void toStringNinjaSpecKiri(Village & v, int x, int y){
   text12.setString(buffer);
   text12.setPosition(x,y+100);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(2)->toString();
   text13.setString(buffer);
   text13.setPosition(x,y+200);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(3)->toString();
   text14.setString(buffer);
   text14.setPosition(x,y+300);
 
-  buffer = v.getNinja(0)->toString();
+  buffer = v.getNinja(4)->toString();
   text15.setString(buffer);
   text15.setPosition(x,y+400);
 }
@@ -999,6 +999,7 @@ int MessageChoix(){
   if (!choix.loadFromFile("Image/Choix.jpg"))
       return EXIT_FAILURE;
   sprite_choix = Sprite(choix);
+  sprite_choix.setPosition(0,-500);
   //Ecriture des consignes
 
   if (!valider.loadFromFile("Image/valider.png"))
