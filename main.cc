@@ -415,7 +415,7 @@ void gestionSouris() {
 
   if (konohaSel==1){
     if (nbPersoJ1 == 3) {
-      konohaJ1 = villageJ1;
+      konohaJ1 = villageJ1; //"Cast" de villageJ1 en <Konoha> en réalité juste cstr par copie
       affiche_MessageJ2Choix=1;
       affiche_choix = 0;
       sprite_valider.setColor(sf::Color(255, 255, 255));
