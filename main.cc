@@ -45,6 +45,7 @@ int affiche_text;
 std::string buffer;
 int konohaSel,sunaSel,kiriSel;
 int choixJ2;
+std::string VillJ1, VillJ2;
 
 //Creation objet
 Konoha konoha;
@@ -70,6 +71,7 @@ Defenseur o_shikamaru("Shikamaru");
 
 //Joueur 1
 int nbPersoJ1 = 0;
+int nbPersoJ2 = 0;
 Village villageJ1;
 Village villageJ2;
 
@@ -254,13 +256,42 @@ void Affichage(){
 
   }
   if (affiche_choix == 1) {
+    if (choixJ2 == 1) {
+      if(VillJ1 == "konoha") {
         window.draw(sprite_choix);
-        window.draw(vil1);
         window.draw(vil2);
         window.draw(vil3);
-        window.draw(text_konoha);
         window.draw(text_suna);
         window.draw(text_kiri);
+        affichePersoKonoha = 0;
+      }
+      if(VillJ1 == "suna") {
+        window.draw(sprite_choix);
+        window.draw(vil1);
+        window.draw(vil3);
+        window.draw(text_konoha);
+        window.draw(text_kiri);
+        affichePersoSuna = 0;
+      }
+      if(VillJ1 == "kiri") {
+        window.draw(sprite_choix);
+        window.draw(vil2);
+        window.draw(vil1);
+        window.draw(text_suna);
+        window.draw(text_konoha);
+        affichePersoKiri = 0;
+      }
+    }
+    else {
+      window.draw(sprite_choix);
+      window.draw(vil1);
+      window.draw(vil2);
+      window.draw(vil3);
+      window.draw(text_konoha);
+      window.draw(text_suna);
+      window.draw(text_kiri);
+    }
+
     if (affichePersoKonoha==1) {
         window.draw(sasuke);
         window.draw(naruto);
@@ -359,7 +390,7 @@ void gestionSouris() {
   //Si la souris va sur les villages
   if (affiche_choix == 1) {
     //va sur Konoha
-    if (nbPersoJ1 == 0) {
+    if ((nbPersoJ1 == 0) || (nbPersoJ2 == 0)) {
       if(((mx>=200) && (mx<320) && (my>=50) && (my<170)) ){
         toStringNinjaSpecKonoha(konoha, 170, 170);
         vil1.setFillColor(sf::Color(255, 255, 255, 128));
@@ -425,298 +456,603 @@ void gestionSouris() {
 
 
   }
-  if (konohaSel==1) {
-    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
-      affiche_MessageJ2Choix=1;
-      affiche_choix = 0;
-      //sprite_valider.setColor(sf::Color(255, 255, 255));
-    }
-    //va sur naruto
-    if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
-      naruto.setFillColor(sf::Color(255, 255, 255, 128));
 
-      if (nbPersoJ1 < 3) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          if (!(villageJ1.faitPartiDuVillage("Naruto")) )  {
-            nbPersoJ1++;
-            villageJ1.addNinja(o_naruto);
-          }
-        }
+  if (choixJ2 == 1) {
+    if (konohaSel==1) {
+      if ((nbPersoJ2 == 3)){
+        VillJ2 = "konoha";
+        affiche_choix = 0;
+        //sprite_valider.setColor(sf::Color(255, 255, 255));
       }
 
-      }
-      else {
+      //va sur naruto
+      if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
+        naruto.setFillColor(sf::Color(255, 255, 255, 128));
 
-        if (!(villageJ1.faitPartiDuVillage("Naruto"))) {
-          naruto.setFillColor(sf::Color(255, 255, 255));
-        }
-      }
-    if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
-      tsunade.setFillColor(sf::Color(255, 255, 255, 128));
-        if (nbPersoJ1 < 3) {
+        if (nbPersoJ2 < 3) {
           if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (!(villageJ1.faitPartiDuVillage("Tsunade")) )  {
-              nbPersoJ1++;
-              villageJ1.addNinja(o_tsunade);
+            if (!(villageJ2.faitPartiDuVillage("Naruto")) )  {
+              nbPersoJ2++;
+              villageJ2.addNinja(o_naruto);
             }
-
           }
         }
-      }
-      else {
-        if (!(villageJ1.faitPartiDuVillage("Tsunade"))) {
-          tsunade.setFillColor(sf::Color(255, 255, 255));
-        }
 
-      }
-    if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
-      sasuke.setFillColor(sf::Color(255, 255, 255, 128));
-      if (nbPersoJ1 < 3) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          if (!(villageJ1.faitPartiDuVillage("Sasuke")) )  {
-            nbPersoJ1++;
-            villageJ1.addNinja(o_sasuke);
+        }
+        else {
+
+          if (!(villageJ2.faitPartiDuVillage("Naruto"))) {
+            naruto.setFillColor(sf::Color(255, 255, 255));
           }
-
         }
-      }
-      }
-      else {
-      if (!(villageJ1.faitPartiDuVillage("Sasuke"))) {
-        sasuke.setFillColor(sf::Color(255, 255, 255));
-      }
+      if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
+        tsunade.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ2 < 3) {
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              if (!(villageJ2.faitPartiDuVillage("Tsunade")) )  {
+                nbPersoJ2++;
+                villageJ2.addNinja(o_tsunade);
+              }
 
-    }
-    if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
-      sakura.setFillColor(sf::Color(255, 255, 255, 128));
-      if (nbPersoJ1 < 3) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          if (!(villageJ1.faitPartiDuVillage("Sakura")) )  {
-            nbPersoJ1++;
-            villageJ1.addNinja(o_sakura);
+            }
+          }
+        }
+        else {
+          if (!(villageJ2.faitPartiDuVillage("Tsunade"))) {
+            tsunade.setFillColor(sf::Color(255, 255, 255));
           }
 
         }
-      }
-      }
-      else {
-      if (!(villageJ1.faitPartiDuVillage("Sakura"))) {
-        sakura.setFillColor(sf::Color(255, 255, 255));
-      }
-
-    }
-    if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
-      minato.setFillColor(sf::Color(255, 255, 255, 128));
-      if (nbPersoJ1 < 3) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          if (!(villageJ1.faitPartiDuVillage("Minato")) )  {
-            nbPersoJ1++;
-            villageJ1.addNinja(o_minato);
-          }
-
-        }
-      }
-      }
-      else {
-      if (!(villageJ1.faitPartiDuVillage("Minato"))) {
-        minato.setFillColor(sf::Color(255, 255, 255));
-      }
-
-      }
-    }
-  if (sunaSel==1) {
-    //va sur gaara
-    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
-      affiche_MessageJ2Choix=1;
-      affiche_choix = 0;
-    //  sprite_valider.setColor(sf::Color(255, 255, 255));
-    }
-
-    if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
-        gaara.setFillColor(sf::Color(255, 255, 255, 128));
-        if (nbPersoJ1 < 3) {
+      if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
+        sasuke.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ2 < 3) {
           if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (!(villageJ1.faitPartiDuVillage("Gaara")) )  {
-              nbPersoJ1++;
-              villageJ1.addNinja(o_gaara);
+            if (!(villageJ2.faitPartiDuVillage("Sasuke")) )  {
+              nbPersoJ2++;
+              villageJ2.addNinja(o_sasuke);
             }
 
           }
         }
         }
         else {
-            if (!(villageJ1.faitPartiDuVillage("Gaara"))) {
-              gaara.setFillColor(sf::Color(255, 255, 255));
-            }
+        if (!(villageJ2.faitPartiDuVillage("Sasuke"))) {
+          sasuke.setFillColor(sf::Color(255, 255, 255));
         }
-    if((mx>=480) && (mx<560) && (my>=300) && (my<380)) {
-        temari.setFillColor(sf::Color(255, 255, 255, 128));
-          if (nbPersoJ1 < 3) {
+
+      }
+      if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
+        sakura.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ2 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ2.faitPartiDuVillage("Sakura")) )  {
+              nbPersoJ2++;
+              villageJ2.addNinja(o_sakura);
+            }
+
+          }
+        }
+        }
+        else {
+        if (!(villageJ2.faitPartiDuVillage("Sakura"))) {
+          sakura.setFillColor(sf::Color(255, 255, 255));
+        }
+
+      }
+      if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
+        minato.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ2 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ2.faitPartiDuVillage("Minato")) )  {
+              nbPersoJ2++;
+              villageJ2.addNinja(o_minato);
+            }
+
+          }
+        }
+        }
+        else {
+        if (!(villageJ2.faitPartiDuVillage("Minato"))) {
+          minato.setFillColor(sf::Color(255, 255, 255));
+        }
+
+        }
+      }
+    if (sunaSel==1) {
+      //va sur gaara
+      if ((nbPersoJ2 == 3) && (choixJ2 == 0)){
+        VillJ2 = "suna";
+        affiche_MessageJ2Choix=1;
+        affiche_choix = 0;
+      //  sprite_valider.setColor(sf::Color(255, 255, 255));
+      }
+
+      if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
+          gaara.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ2 < 3) {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-              if (!(villageJ1.faitPartiDuVillage("Temari")) )  {
-                nbPersoJ1++;
-                villageJ1.addNinja(o_temari);
+              if (!(villageJ2.faitPartiDuVillage("Gaara")) )  {
+                nbPersoJ2++;
+                villageJ2.addNinja(o_gaara);
               }
 
             }
           }
           }
           else {
-          if (!(villageJ1.faitPartiDuVillage("Temari"))) {
-            temari.setFillColor(sf::Color(255, 255, 255));
+              if (!(villageJ2.faitPartiDuVillage("Gaara"))) {
+                gaara.setFillColor(sf::Color(255, 255, 255));
+              }
           }
-
-          }
-    if((mx>=480) && (mx<560) && (my>=400) && (my<480)) {
-          kankuro.setFillColor(sf::Color(255, 255, 255, 128));
-            if (nbPersoJ1 < 3) {
+      if((mx>=480) && (mx<560) && (my>=300) && (my<380)) {
+          temari.setFillColor(sf::Color(255, 255, 255, 128));
+            if (nbPersoJ2 < 3) {
               if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (!(villageJ1.faitPartiDuVillage("Kankuro")) )  {
-                  nbPersoJ1++;
-                  villageJ1.addNinja(o_kankuro);
+                if (!(villageJ2.faitPartiDuVillage("Temari")) )  {
+                  nbPersoJ2++;
+                  villageJ2.addNinja(o_temari);
                 }
 
               }
             }
             }
             else {
-            if (!(villageJ1.faitPartiDuVillage("Kankuro"))) {
-              kankuro.setFillColor(sf::Color(255, 255, 255));
+            if (!(villageJ2.faitPartiDuVillage("Temari"))) {
+              temari.setFillColor(sf::Color(255, 255, 255));
             }
 
             }
-    if((mx>=480) && (mx<560) && (my>=500) && (my<580)) {
-            shiyo.setFillColor(sf::Color(255, 255, 255, 128));
-              if (nbPersoJ1 < 3) {
+      if((mx>=480) && (mx<560) && (my>=400) && (my<480)) {
+            kankuro.setFillColor(sf::Color(255, 255, 255, 128));
+              if (nbPersoJ2 < 3) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                  if (!(villageJ1.faitPartiDuVillage("Shiyo")) )  {
-                    nbPersoJ1++;
-                    villageJ1.addNinja(o_shiyo);
+                  if (!(villageJ2.faitPartiDuVillage("Kankuro")) )  {
+                    nbPersoJ2++;
+                    villageJ2.addNinja(o_kankuro);
                   }
 
                 }
               }
               }
               else {
-              if (!(villageJ1.faitPartiDuVillage("Shiyo"))) {
-                shiyo.setFillColor(sf::Color(255, 255, 255));
+              if (!(villageJ2.faitPartiDuVillage("Kankuro"))) {
+                kankuro.setFillColor(sf::Color(255, 255, 255));
               }
 
               }
-    if((mx>=480) && (mx<560) && (my>=600) && (my<680)) {
-              sasori.setFillColor(sf::Color(255, 255, 255, 128));
-                if (nbPersoJ1 < 3) {
+      if((mx>=480) && (mx<560) && (my>=500) && (my<580)) {
+              shiyo.setFillColor(sf::Color(255, 255, 255, 128));
+                if (nbPersoJ2 < 3) {
                   if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                    if (!(villageJ1.faitPartiDuVillage("Sasori")) )  {
-                      nbPersoJ1++;
-                      villageJ1.addNinja(o_sasori);
+                    if (!(villageJ2.faitPartiDuVillage("Shiyo")) )  {
+                      nbPersoJ2++;
+                      villageJ2.addNinja(o_shiyo);
                     }
 
                   }
                 }
                 }
                 else {
-                if (!(villageJ1.faitPartiDuVillage("Sasori"))) {
-                  sasori.setFillColor(sf::Color(255, 255, 255));
+                if (!(villageJ2.faitPartiDuVillage("Shiyo"))) {
+                  shiyo.setFillColor(sf::Color(255, 255, 255));
                 }
 
+                }
+      if((mx>=480) && (mx<560) && (my>=600) && (my<680)) {
+                sasori.setFillColor(sf::Color(255, 255, 255, 128));
+                  if (nbPersoJ2 < 3) {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                      if (!(villageJ2.faitPartiDuVillage("Sasori")) )  {
+                        nbPersoJ2++;
+                        villageJ2.addNinja(o_sasori);
+                      }
+
+                    }
+                  }
+                  }
+                  else {
+                  if (!(villageJ2.faitPartiDuVillage("Sasori"))) {
+                    sasori.setFillColor(sf::Color(255, 255, 255));
+                  }
+
+                }
               }
-            }
-  if (kiriSel==1) {
-    //va sur naruto
-    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
-      affiche_MessageJ2Choix=1;
-      affiche_choix = 0;
-      //sprite_valider.setColor(sf::Color(255, 255, 255));
-    }
+    if (kiriSel==1) {
+      //va sur naruto
+      if ((nbPersoJ2 == 3) && (choixJ2 == 0)){
+        VillJ2 = "kiri";
+        affiche_MessageJ2Choix=1;
+        affiche_choix = 0;
+        //sprite_valider.setColor(sf::Color(255, 255, 255));
+      }
 
-    if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
-      haku.setFillColor(sf::Color(255, 255, 255, 128));
-      if (nbPersoJ1 < 3) {
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-          if (!(villageJ1.faitPartiDuVillage("Haku")) )  {
-            nbPersoJ1++;
-            villageJ1.addNinja(o_haku);
-          }
-
-        }
-      }
-      }
-      else {
-          if (!(villageJ1.faitPartiDuVillage("Haku"))) {
-            haku.setFillColor(sf::Color(255, 255, 255));
-          }
-      }
-    if((mx>=880) && (mx<960) && (my>=300) && (my<380)) {
-        zabuza.setFillColor(sf::Color(255, 255, 255, 128));
-        if (nbPersoJ1 < 3) {
+      if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
+        haku.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ2 < 3) {
           if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (!(villageJ1.faitPartiDuVillage("Zabuza")) )  {
-              nbPersoJ1++;
-              villageJ1.addNinja(o_zabuza);
+            if (!(villageJ2.faitPartiDuVillage("Haku")) )  {
+              nbPersoJ2++;
+              villageJ2.addNinja(o_haku);
             }
 
           }
         }
         }
         else {
-            if (!(villageJ1.faitPartiDuVillage("Zabuza"))) {
-              zabuza.setFillColor(sf::Color(255, 255, 255));
+            if (!(villageJ2.faitPartiDuVillage("Haku"))) {
+              haku.setFillColor(sf::Color(255, 255, 255));
             }
         }
-    if((mx>=880) && (mx<960) && (my>=400) && (my<480)) {
-          kisame.setFillColor(sf::Color(255, 255, 255, 128));
-          if (nbPersoJ1 < 3) {
+      if((mx>=880) && (mx<960) && (my>=300) && (my<380)) {
+          zabuza.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ2 < 3) {
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-              if (!(villageJ1.faitPartiDuVillage("Kisame")) )  {
-                nbPersoJ1++;
-                villageJ1.addNinja(o_kisame);
+              if (!(villageJ2.faitPartiDuVillage("Zabuza")) )  {
+                nbPersoJ2++;
+                villageJ2.addNinja(o_zabuza);
               }
 
             }
           }
           }
           else {
-              if (!(villageJ1.faitPartiDuVillage("Kisame"))) {
-                kisame.setFillColor(sf::Color(255, 255, 255));
+              if (!(villageJ2.faitPartiDuVillage("Zabuza"))) {
+                zabuza.setFillColor(sf::Color(255, 255, 255));
               }
           }
-    if((mx>=880) && (mx<960) && (my>=500) && (my<580)) {
-            hinata.setFillColor(sf::Color(255, 255, 255, 128));
-            if (nbPersoJ1 < 3) {
+      if((mx>=880) && (mx<960) && (my>=400) && (my<480)) {
+            kisame.setFillColor(sf::Color(255, 255, 255, 128));
+            if (nbPersoJ2 < 3) {
               if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (!(villageJ1.faitPartiDuVillage("Hinata")) )  {
-                  nbPersoJ1++;
-                  villageJ1.addNinja(o_hinata);
+                if (!(villageJ2.faitPartiDuVillage("Kisame")) )  {
+                  nbPersoJ2++;
+                  villageJ2.addNinja(o_kisame);
                 }
 
               }
             }
             }
             else {
-                if (!(villageJ1.faitPartiDuVillage("Hinata"))) {
-                  hinata.setFillColor(sf::Color(255, 255, 255));
+                if (!(villageJ2.faitPartiDuVillage("Kisame"))) {
+                  kisame.setFillColor(sf::Color(255, 255, 255));
                 }
             }
-    if((mx>=880) && (mx<960) && (my>=600) && (my<680)) {
-              shikamaru.setFillColor(sf::Color(255, 255, 255, 128));
-              if (nbPersoJ1 < 3) {
+      if((mx>=880) && (mx<960) && (my>=500) && (my<580)) {
+              hinata.setFillColor(sf::Color(255, 255, 255, 128));
+              if (nbPersoJ2 < 3) {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                  if (!(villageJ1.faitPartiDuVillage("Shikamaru")) )  {
-                    nbPersoJ1++;
-                    villageJ1.addNinja(o_shikamaru);
+                  if (!(villageJ2.faitPartiDuVillage("Hinata")) )  {
+                    nbPersoJ2++;
+                    villageJ2.addNinja(o_hinata);
                   }
 
                 }
               }
               }
               else {
-                  if (!(villageJ1.faitPartiDuVillage("Shikamaru"))) {
-                    shikamaru.setFillColor(sf::Color(255, 255, 255));
+                  if (!(villageJ2.faitPartiDuVillage("Hinata"))) {
+                    hinata.setFillColor(sf::Color(255, 255, 255));
                   }
               }
+      if((mx>=880) && (mx<960) && (my>=600) && (my<680)) {
+                shikamaru.setFillColor(sf::Color(255, 255, 255, 128));
+                if (nbPersoJ2 < 3) {
+                  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                    if (!(villageJ2.faitPartiDuVillage("Shikamaru")) )  {
+                      nbPersoJ2++;
+                      villageJ2.addNinja(o_shikamaru);
+                    }
+
+                  }
+                }
+                }
+                else {
+                    if (!(villageJ2.faitPartiDuVillage("Shikamaru"))) {
+                      shikamaru.setFillColor(sf::Color(255, 255, 255));
+                    }
+                }
+
+            }
+  }
+  else {
+    if (konohaSel==1) {
+      if ((nbPersoJ1 == 3)){
+        VillJ1 = "konoha";
+        affiche_MessageJ2Choix=1;
+        affiche_choix = 0;
+        //sprite_valider.setColor(sf::Color(255, 255, 255));
+      }
+
+      //va sur naruto
+      if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
+        naruto.setFillColor(sf::Color(255, 255, 255, 128));
+
+        if (nbPersoJ1 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ1.faitPartiDuVillage("Naruto")) )  {
+              nbPersoJ1++;
+              villageJ1.addNinja(o_naruto);
+            }
+          }
+        }
+
+        }
+        else {
+
+          if (!(villageJ1.faitPartiDuVillage("Naruto"))) {
+            naruto.setFillColor(sf::Color(255, 255, 255));
+          }
+        }
+      if((mx>=80) && (mx<160) && (my>=300) && (my<380)) {
+        tsunade.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ1 < 3) {
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              if (!(villageJ1.faitPartiDuVillage("Tsunade")) )  {
+                nbPersoJ1++;
+                villageJ1.addNinja(o_tsunade);
+              }
+
+            }
+          }
+        }
+        else {
+          if (!(villageJ1.faitPartiDuVillage("Tsunade"))) {
+            tsunade.setFillColor(sf::Color(255, 255, 255));
+          }
+
+        }
+      if((mx>=80) && (mx<160) && (my>=400) && (my<480)) {
+        sasuke.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ1 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ1.faitPartiDuVillage("Sasuke")) )  {
+              nbPersoJ1++;
+              villageJ1.addNinja(o_sasuke);
+            }
 
           }
+        }
+        }
+        else {
+        if (!(villageJ1.faitPartiDuVillage("Sasuke"))) {
+          sasuke.setFillColor(sf::Color(255, 255, 255));
+        }
+
+      }
+      if((mx>=80) && (mx<160) && (my>=500) && (my<580)) {
+        sakura.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ1 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ1.faitPartiDuVillage("Sakura")) )  {
+              nbPersoJ1++;
+              villageJ1.addNinja(o_sakura);
+            }
+
+          }
+        }
+        }
+        else {
+        if (!(villageJ1.faitPartiDuVillage("Sakura"))) {
+          sakura.setFillColor(sf::Color(255, 255, 255));
+        }
+
+      }
+      if((mx>=80) && (mx<160) && (my>=600) && (my<680)) {
+        minato.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ1 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ1.faitPartiDuVillage("Minato")) )  {
+              nbPersoJ1++;
+              villageJ1.addNinja(o_minato);
+            }
+
+          }
+        }
+        }
+        else {
+        if (!(villageJ1.faitPartiDuVillage("Minato"))) {
+          minato.setFillColor(sf::Color(255, 255, 255));
+        }
+
+        }
+      }
+    if (sunaSel==1) {
+      //va sur gaara
+      if (nbPersoJ1 == 3){
+        VillJ1 = "suna";
+        affiche_MessageJ2Choix=1;
+        affiche_choix = 0;
+      //  sprite_valider.setColor(sf::Color(255, 255, 255));
+      }
+
+      if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
+          gaara.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ1 < 3) {
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              if (!(villageJ1.faitPartiDuVillage("Gaara")) )  {
+                nbPersoJ1++;
+                villageJ1.addNinja(o_gaara);
+              }
+
+            }
+          }
+          }
+          else {
+              if (!(villageJ1.faitPartiDuVillage("Gaara"))) {
+                gaara.setFillColor(sf::Color(255, 255, 255));
+              }
+          }
+      if((mx>=480) && (mx<560) && (my>=300) && (my<380)) {
+          temari.setFillColor(sf::Color(255, 255, 255, 128));
+            if (nbPersoJ1 < 3) {
+              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                if (!(villageJ1.faitPartiDuVillage("Temari")) )  {
+                  nbPersoJ1++;
+                  villageJ1.addNinja(o_temari);
+                }
+
+              }
+            }
+            }
+            else {
+            if (!(villageJ1.faitPartiDuVillage("Temari"))) {
+              temari.setFillColor(sf::Color(255, 255, 255));
+            }
+
+            }
+      if((mx>=480) && (mx<560) && (my>=400) && (my<480)) {
+            kankuro.setFillColor(sf::Color(255, 255, 255, 128));
+              if (nbPersoJ1 < 3) {
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                  if (!(villageJ1.faitPartiDuVillage("Kankuro")) )  {
+                    nbPersoJ1++;
+                    villageJ1.addNinja(o_kankuro);
+                  }
+
+                }
+              }
+              }
+              else {
+              if (!(villageJ1.faitPartiDuVillage("Kankuro"))) {
+                kankuro.setFillColor(sf::Color(255, 255, 255));
+              }
+
+              }
+      if((mx>=480) && (mx<560) && (my>=500) && (my<580)) {
+              shiyo.setFillColor(sf::Color(255, 255, 255, 128));
+                if (nbPersoJ1 < 3) {
+                  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                    if (!(villageJ1.faitPartiDuVillage("Shiyo")) )  {
+                      nbPersoJ1++;
+                      villageJ1.addNinja(o_shiyo);
+                    }
+
+                  }
+                }
+                }
+                else {
+                if (!(villageJ1.faitPartiDuVillage("Shiyo"))) {
+                  shiyo.setFillColor(sf::Color(255, 255, 255));
+                }
+
+                }
+      if((mx>=480) && (mx<560) && (my>=600) && (my<680)) {
+                sasori.setFillColor(sf::Color(255, 255, 255, 128));
+                  if (nbPersoJ1 < 3) {
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                      if (!(villageJ1.faitPartiDuVillage("Sasori")) )  {
+                        nbPersoJ1++;
+                        villageJ1.addNinja(o_sasori);
+                      }
+
+                    }
+                  }
+                  }
+                  else {
+                  if (!(villageJ1.faitPartiDuVillage("Sasori"))) {
+                    sasori.setFillColor(sf::Color(255, 255, 255));
+                  }
+
+                }
+              }
+    if (kiriSel==1) {
+      //va sur naruto
+      if (nbPersoJ1 == 3){
+        VillJ1 = "kiri";
+        affiche_MessageJ2Choix=1;
+        affiche_choix = 0;
+        //sprite_valider.setColor(sf::Color(255, 255, 255));
+      }
+
+      if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
+        haku.setFillColor(sf::Color(255, 255, 255, 128));
+        if (nbPersoJ1 < 3) {
+          if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            if (!(villageJ1.faitPartiDuVillage("Haku")) )  {
+              nbPersoJ1++;
+              villageJ1.addNinja(o_haku);
+            }
+
+          }
+        }
+        }
+        else {
+            if (!(villageJ1.faitPartiDuVillage("Haku"))) {
+              haku.setFillColor(sf::Color(255, 255, 255));
+            }
+        }
+      if((mx>=880) && (mx<960) && (my>=300) && (my<380)) {
+          zabuza.setFillColor(sf::Color(255, 255, 255, 128));
+          if (nbPersoJ1 < 3) {
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+              if (!(villageJ1.faitPartiDuVillage("Zabuza")) )  {
+                nbPersoJ1++;
+                villageJ1.addNinja(o_zabuza);
+              }
+
+            }
+          }
+          }
+          else {
+              if (!(villageJ1.faitPartiDuVillage("Zabuza"))) {
+                zabuza.setFillColor(sf::Color(255, 255, 255));
+              }
+          }
+      if((mx>=880) && (mx<960) && (my>=400) && (my<480)) {
+            kisame.setFillColor(sf::Color(255, 255, 255, 128));
+            if (nbPersoJ1 < 3) {
+              if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                if (!(villageJ1.faitPartiDuVillage("Kisame")) )  {
+                  nbPersoJ1++;
+                  villageJ1.addNinja(o_kisame);
+                }
+
+              }
+            }
+            }
+            else {
+                if (!(villageJ1.faitPartiDuVillage("Kisame"))) {
+                  kisame.setFillColor(sf::Color(255, 255, 255));
+                }
+            }
+      if((mx>=880) && (mx<960) && (my>=500) && (my<580)) {
+              hinata.setFillColor(sf::Color(255, 255, 255, 128));
+              if (nbPersoJ1 < 3) {
+                if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                  if (!(villageJ1.faitPartiDuVillage("Hinata")) )  {
+                    nbPersoJ1++;
+                    villageJ1.addNinja(o_hinata);
+                  }
+
+                }
+              }
+              }
+              else {
+                  if (!(villageJ1.faitPartiDuVillage("Hinata"))) {
+                    hinata.setFillColor(sf::Color(255, 255, 255));
+                  }
+              }
+      if((mx>=880) && (mx<960) && (my>=600) && (my<680)) {
+                shikamaru.setFillColor(sf::Color(255, 255, 255, 128));
+                if (nbPersoJ1 < 3) {
+                  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+                    if (!(villageJ1.faitPartiDuVillage("Shikamaru")) )  {
+                      nbPersoJ1++;
+                      villageJ1.addNinja(o_shikamaru);
+                    }
+
+                  }
+                }
+                }
+                else {
+                    if (!(villageJ1.faitPartiDuVillage("Shikamaru"))) {
+                      shikamaru.setFillColor(sf::Color(255, 255, 255));
+                    }
+                }
+
+            }
+  }
+
 }
 
 int CreationPersoSuna() {
