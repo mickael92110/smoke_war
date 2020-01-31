@@ -28,11 +28,13 @@ public:
   int getCapaciteAtk(){return _capaciteAtk;}
   int getCapaciteDef(){return _capaciteDef;}
   int getCapaciteSoin(){return _capaciteSoin;}
-
+  std::string getNom(){return _nomVillage;}
+  size_t getSize(){return _listeNinja.size();}
   Ninja* getNinja(int i){return _listeNinja[i];}
   std::string toString();
   std::vector <Ninja*> getListeNinja() {return _listeNinja;}
   bool faitPartiDuVillage(std::string s);
+  bool isDead();
   bool operator==(std::string ninja);
   bool isEmpty();
 

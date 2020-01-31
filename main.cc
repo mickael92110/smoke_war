@@ -12,6 +12,7 @@
 #include "kageAtk.hh"
 #include "kageDef.hh"
 #include "kageSoin.hh"
+#include "combatVillage.hh"
 
 using namespace sf;
 
@@ -1025,76 +1026,90 @@ int MessageChoix(){
 }
 
 
-int main()
-{
-
-    // Create the main window
-    window.create(sf::VideoMode(1312, 700), "Life is Smoke");
-
-
-    //Icon
-    AfficheIcon();
-    //Création menu
-    CreationMenu();
-    //Creation sprite_choix
-    CreationChoix();
-    // Load a music to play
-    Musique();
-    initVillage();
-    //Creation Personnages
-    CreationPersoKonoha();
-    CreationPersoSuna();
-    CreationPersoKiri();
-    CreationTexte();
-    CreationTexteVillage();
-    MessageChoix();
-
-
-    while (window.isOpen())
-    {
-        // Process events
-              sf::Event event;
-              while (window.pollEvent(event))
-              {
-                      switch (event.type)
-                      {
-                         // fenêtre fermée
-                         case sf::Event::Closed:
-                             window.close();
-                             break;
-
-                         // on ne traite pas les autres types d'évènements
-                         default:
-                             break;
-               }
-
-
-
-              }
-        //GESTION SOURIS//
-        gestionSouris();
-
-        Affichage();
-
-    }
-    // initKonoha();
-    // buffer = konoha.getNinja(0)->toString();
-    // std::cout<<buffer<<std::endl;
-
-
-    return EXIT_SUCCESS;
-}
-
-// int main(){
-//   Village  v1;
-//   Attaquant Sasuke;
-//   Konoha ko;
-//   //v1.addNinja(Sasuke);
-//   ko = v1;
+// int main()
+// {
 //
-//   std::cout<< ko.isEmpty()<< std::endl;
+//     // Create the main window
+//     window.create(sf::VideoMode(1312, 700), "Life is Smoke");
 //
 //
+//     //Icon
+//     AfficheIcon();
+//     //Création menu
+//     CreationMenu();
+//     //Creation sprite_choix
+//     CreationChoix();
+//     // Load a music to play
+//     Musique();
+//     initVillage();
+//     //Creation Personnages
+//     CreationPersoKonoha();
+//     CreationPersoSuna();
+//     CreationPersoKiri();
+//     CreationTexte();
+//     CreationTexteVillage();
+//     MessageChoix();
 //
-//   return 0;
+//
+//     while (window.isOpen())
+//     {
+//         // Process events
+//               sf::Event event;
+//               while (window.pollEvent(event))
+//               {
+//                       switch (event.type)
+//                       {
+//                          // fenêtre fermée
+//                          case sf::Event::Closed:
+//                              window.close();
+//                              break;
+//
+//                          // on ne traite pas les autres types d'évènements
+//                          default:
+//                              break;
+//                       }
+//               }
+//         //GESTION SOURIS//
+//         gestionSouris();
+//
+//         Affichage();
+//
+//     }
+//     // initKonoha();
+//     // buffer = konoha.getNinja(0)->toString();
+//     // std::cout<<buffer<<std::endl;
+//
+//
+//     return EXIT_SUCCESS;
 // }
+
+int main(){
+  Village v1("Konoha");
+  Village v2("Suna");
+
+  Attaquant sasuke("Sasuke");
+  Defenseur gaara("Gaara");
+  Soigneur sakura("Sakura");
+
+  Attaquant naruto("Naruto");
+  Defenseur itachi("Itachi");
+  Soigneur tsunade("Tsunade");
+
+
+  v1.addNinja(sasuke);
+  v1.addNinja(gaara);
+  v1.addNinja(sakura);
+
+  v2.addNinja(naruto);
+  v2.addNinja(itachi);
+  v2.addNinja(tsunade);
+
+  //std::cout<<v1.toString()<<std::endl;
+  //std::cout<<v2.toString()<<std::endl;
+
+  CombatVillage grandeGuerre(v1, v2);
+  grandeGuerre.combat();
+  //std::cout<<grandeGuerre.toString()<<std::endl;
+
+  return 0;
+}

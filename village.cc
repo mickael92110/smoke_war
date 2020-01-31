@@ -47,6 +47,15 @@ std::string Village::toString(){
   return listeNom;
 }
 
+bool Village::isDead(){
+  for(size_t i = 0; i < this->_listeNinja.size(); i++) {
+    if ( this->_listeNinja[i]->getVie() > 0) {
+      return true;
+    }
+  }
+  return false;
+}
+
 bool Village::faitPartiDuVillage(std::string n) {
   for(size_t i = 0; i < this->_listeNinja.size(); i++) {
     if (n == this->_listeNinja[i]->getNom()) {
