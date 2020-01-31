@@ -44,6 +44,7 @@ int affiche_menu, affiche_choix, affichePersoKonoha, affichePersoSuna, affichePe
 int affiche_text;
 std::string buffer;
 int konohaSel,sunaSel,kiriSel;
+int choixJ2;
 
 //Creation objet
 Konoha konoha;
@@ -70,6 +71,7 @@ Defenseur o_shikamaru("Shikamaru");
 //Joueur 1
 int nbPersoJ1 = 0;
 Village villageJ1;
+Village villageJ2;
 
 void initVillage(){
   konoha.addNinja(o_naruto);
@@ -107,7 +109,6 @@ int CreationMenu() {
 
   return 0;
 }
-
 void toStringNinjaSpecKonoha(Village & v, int x, int y){
   buffer = v.getNinja(0)->toString();
   text1.setString(buffer);
@@ -171,7 +172,6 @@ void toStringNinjaSpecKiri(Village & v, int x, int y){
   text15.setString(buffer);
   text15.setPosition(x,y+400);
 }
-
 void AfficheIcon() {
   icon.loadFromFile("Image/icon.jpeg"); // File/Image/Pixel
   window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
@@ -316,7 +316,7 @@ void gestionSouris() {
   //Si la souris va sur bouton jouer
   if (affiche_menu == 1) {
     if((mx>=420) && (mx<900) && (my>=500) && (my<650)){
-      sprite_jouer.setColor(sf::Color(0, 0, 0));
+      sprite_jouer.setColor(sf::Color(255, 255, 255,128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         affiche_menu = 0;
         affiche_choix = 0;
@@ -324,16 +324,32 @@ void gestionSouris() {
       }
     }
     else
-      sprite_jouer.setColor(sf::Color(255, 0, 0));
+      sprite_jouer.setColor(sf::Color(255, 255, 255));
   }
 
+
   if (affiche_MessageJ1Choix==1) {
-    if((mx>=700) && (mx<1050) && (my>=400) && (my<520)){
+    if((mx>=700) && (mx<1100) && (my>=400) && (my<520)){
       sprite_valider.setColor(sf::Color(255, 255, 255, 128));
       if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         affiche_MessageJ1Choix = 0;
         affiche_choix = 1;
 
+      }
+    }
+    else
+      sprite_valider.setColor(sf::Color(255, 255, 255));
+  }
+
+  if (affiche_MessageJ2Choix==1) {
+
+    if((mx>=700) && (mx<1100) && (my>=400) && (my<520)){
+      sprite_valider.setColor(sf::Color(255, 255, 255, 128));
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        printf("qqch\n");
+        affiche_MessageJ2Choix = 0;
+        choixJ2 = 1;
+        affiche_choix = 1;
       }
     }
     else
@@ -409,12 +425,11 @@ void gestionSouris() {
 
 
   }
-
   if (konohaSel==1) {
-    if (nbPersoJ1 == 3) {
+    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
       affiche_MessageJ2Choix=1;
       affiche_choix = 0;
-      sprite_valider.setColor(sf::Color(255, 255, 255));
+      //sprite_valider.setColor(sf::Color(255, 255, 255));
     }
     //va sur naruto
     if((mx>=80) && (mx<160) && (my>=200) && (my<280)) {
@@ -509,13 +524,12 @@ void gestionSouris() {
 
       }
     }
-
   if (sunaSel==1) {
     //va sur gaara
-    if (nbPersoJ1 == 3) {
+    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
       affiche_MessageJ2Choix=1;
       affiche_choix = 0;
-      sprite_valider.setColor(sf::Color(255, 255, 255));
+    //  sprite_valider.setColor(sf::Color(255, 255, 255));
     }
 
     if((mx>=480) && (mx<560) && (my>=200) && (my<280)) {
@@ -608,13 +622,12 @@ void gestionSouris() {
 
               }
             }
-
   if (kiriSel==1) {
     //va sur naruto
-    if (nbPersoJ1 == 3) {
+    if ((nbPersoJ1 == 3) && (choixJ2 == 0)){
       affiche_MessageJ2Choix=1;
       affiche_choix = 0;
-      sprite_valider.setColor(sf::Color(255, 255, 255));
+      //sprite_valider.setColor(sf::Color(255, 255, 255));
     }
 
     if((mx>=880) && (mx<960) && (my>=200) && (my<280)) {
@@ -704,9 +717,8 @@ void gestionSouris() {
               }
 
           }
-
-
 }
+
 int CreationPersoSuna() {
 
   gaara = RectangleShape(sf::Vector2f(80, 80));
@@ -947,7 +959,7 @@ int CreationTexte(){
 
   consigne2.setString(buffer);
   consigne2.setFont(font);
-  consigne2.setCharacterSize(35);
+  consigne2.setCharacterSize(50);
   consigne2.setFillColor(sf::Color::Black);
   consigne2.setStyle(sf::Text::Bold);
 
@@ -1043,6 +1055,7 @@ int main()
 
     while (window.isOpen())
     {
+      //printf("afficher choix = %d\n",affiche_choix );
         // Process events
               sf::Event event;
               while (window.pollEvent(event))
